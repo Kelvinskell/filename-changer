@@ -1,6 +1,4 @@
 #!/bin/bash
-#The function of this script is to change filenames to lowercase characters for easier terminal use.
-#This script is specially adapted for Linux systems only and may not (properly) run on Windows or other Operating Systems.
 trap func exit
 function func()
 {
@@ -55,6 +53,3 @@ do
 
 		esac
 	done
-	#This Program was written by kelvin C Onuchukwu
-	#https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1
-	#Please report any bugs to kelvinskelll@gmail.com
