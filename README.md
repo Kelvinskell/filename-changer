@@ -17,7 +17,7 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 
 
 ## Installation
-To be able to use this program, simply clone this repository to your local system. Switch (`cd`) into the cloned repository (_filename-changer_) and start the program by running `bash fnc` on your terminal.
+To be able to use this program, simply clone this repository to your local system. Switch (`cd`) into the cloned repository (_filename-changer_) and start the program by running `bash fnc.sh` on your terminal.
 When this script is run for the first time on a local machine, it will ask for permission to create and move to a new directory with the absolute path: `~/git-projects/filename-changer`.
 When this permission is granted, it will then create an alias `fnc` for the command `bash ~/fnc.sh`. **This enables the user to run the script from anywhere on the terminal by just typing fnc.**
 If however this permission is denied, the user will have to `cd` into this directory and directly execute the `bash fnc.sh` whenever they want to run this script.
