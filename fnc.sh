@@ -8,6 +8,7 @@ trap func exit
 function func()
 {
 	rm error_log.txt 2>/dev/null
+        rm update.txt 2> /dev/null
 }
 
 #Check whether script is running for the first time on the local machine. 
@@ -67,7 +68,33 @@ else
 	fi
 }
 
-while getopts "dDrR" options
+function Update () 
+{ 
+echo "Connecting to remote repository..."
+#If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
+timeout --preserve-status 120 git pull ~/git-projects/filename-changer > update.txt
+        if [[ grep -q "" update.txt ]] 
+        then echo "Your package has been updated to the latest version."
+        echo "Please restart this file by running **bash fnc.sh** "
+        rm .gitignore/first.txt 2>/dev/null
+        else 
+        echo "fnc.sh: Program cannot be updated at this time. Please check your network connection and try again."
+fi
+logger `cat update.txt` 
+exit 
+} 
+
+function Version () 
+{
+echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #' 
+echo -e '# Filename-Changer (fnc) #'
+echo -e '# v2.0 #'
+echo -e '# https://github.com/Kelvinskell/filename-changer #'
+echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #'
+exit
+} 
+
+while getopts "dDrRVv" options
 do
 	case ${options} in
 		d | D)
@@ -76,6 +103,12 @@ do
 		r | R)
 			F2
 			;;
+                v) 
+                       Version 
+                        ;;
+                V) 
+                       Update
+                        ;;
 		*)
 			echo "Use -d or -D option for files in the current directory only, Use -r or -R option to specify a directory and peform action on the files therein."
 
