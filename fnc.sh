@@ -11,13 +11,17 @@ function func()
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
 }
+
+function Temp_dir () 
+{
 #check if ~/tmp exists 
-if [[ -d ~/tmp]] 
+if [[ -d ~/tmp ]] 
 then 
      :
 else 
 mkdir ~/tmp
 fi
+} 
 
 #The init function essentially checks if the user is running the script for the first time.
 #If so, it creates an alias **fnc**, so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
@@ -50,6 +54,7 @@ fi
 
 function F1()
 {
+Temp_dir
 var1=`ls`
 for i in $var1
 do
@@ -67,6 +72,7 @@ exit
 
 function F2()
 {
+Temp_dir
 	echo "Please enter the ABSOLUTE Directory path for the files(e.g /home/$USER/Videos):"
 	read path
 	cd $path 2>/dev/null
@@ -86,6 +92,7 @@ else
 
 function Update () 
 { 
+Temp_dir
 echo "Connecting to remote repository..."
 #If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
 timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
@@ -104,6 +111,7 @@ exit
 
 function Version () 
 {
+Temp_dir
 echo  "fnc.sh: Filename-Changer (fnc)"
 echo  "Author: Kelvin Onuchukwu" 
 echo  "Version 2.0"
@@ -132,4 +140,5 @@ do
 
 		esac
 	done
+        Temp_dir
 	Init
