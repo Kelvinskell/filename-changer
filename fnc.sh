@@ -118,7 +118,9 @@ echo  "Version 2.0"
 echo -e "For more info, visit \e[4mhttps://github.com/Kelvinskell/filename-changer\e[10m"
 exit
 } 
-############################################################################################################################################
+
+##############################################################################################################################################
+
 # Specify silent error checking 
 # Specify functions for different options
 while getopts ":dDrRVv" options
