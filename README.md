@@ -31,6 +31,7 @@ On subsequent occasions, if permission had been granted in the first instance, e
 If permission is denied, the script will be able to run when `bash fnc.sh` is executed with an absolute or relative path, or when a custom alias is created by the user.
 
 **Note:** 
+- Your system must be capable of running bash in POSIX mode. 
 - For this installation to work correctly, your current working directory has to be set to $HOME (especially if you wish to grant permission to create an alias as intended).
 - If you are executing this script for the first time, use 'bash fnc.sh` without any options if you want to automatically create an alias. 
 - The script will exit after the first instance, regardless of whether permission was granted or not. You'll need to restart the program with options.
