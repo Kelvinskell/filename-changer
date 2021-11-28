@@ -14,7 +14,7 @@ function func()
 
 function Temp_dir () 
 {
-#check if ~/tmp exists 
+# check if ~/tmp directory exists 
 if [[ -d ~/tmp ]] 
 then 
      :
@@ -23,11 +23,11 @@ mkdir ~/tmp
 fi
 } 
 
-#The init function essentially checks if the user is running the script for the first time.
-#If so, it creates an alias 'fnc', so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
 function Init ()
 {
-#Check whether script is running for the first time on the local machine. 
+# The init function essentially checks if the user is running the script for the first time.
+# If so, it creates an alias 'fnc', so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
+# Check whether script is running for the first time on the local machine. 
 Temp_dir
 if [[ -f ~/filename-changer/.first.txt ]] 
 then
@@ -54,7 +54,9 @@ fi
 fi
 }
 
-function F1()
+#####################################################GETOPTS FUNCTIONS########################################################################
+
+function Lowecase()
 {
 var1=`ls`
 for i in $var1
@@ -71,7 +73,7 @@ fi
 exit
 }
 
-function F2()
+function Path()
 {
 	echo "Please enter the ABSOLUTE Directory path for the files(e.g /home/$USER/Videos):"
 	read path
@@ -93,7 +95,7 @@ else
 function Update () 
 { 
 echo "Connecting to remote repository..."
-#If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
+# If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
 timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
         if [[ `grep -q "Unpacking objects:" ~/tmp/update.txt` ]] 
 		then
@@ -116,34 +118,88 @@ echo  "Version 2.0"
 echo -e "For more info, visit \e[4mhttps://github.com/Kelvinskell/filename-changer\e[10m"
 exit
 } 
-#Specify silent error checking 
+
+# Specify silent error checking 
+# Specify functions for different options
 while getopts ":dDrRVv" options
 do
 	case ${options} in
-		d | D)
-			
+	       	C)
+			# Change first letter in filename to uppercase
 			Temp_dir
-			F1
+			First
 			;;
-		r | R)
+		 C)
+			 # Change filename to uppercase
 			Temp_dir
-			F2
+			Uppercase
 			;;
+		 
+		e | E)
+			# Change file extension
+			Temp_dir
+			Extension
+			;;
+		g | G)
+			# Use glob characters to select filenames
+			Temp_dir
+			Glob
+			;;
+		h)
+			# Display manual page
+			Temp_dir
+			Help
+			;;
+		H)
+			# Display history
+			Temp_dir
+			History
+			;;
+		i | I)
+			# Perform filename changes iteratively
+			Temp_dir
+			Iterate
+			;;
+		l | L)
+			# Change filenames in current directory to lowercase characters
+			Temp_dir
+			Lowercase
+			;;
+		p | P)
+			# Specify absolute path to directory containing files of interest
+			Temp_dir
+			Path
+			;;
+		r)
+			# Use this script on a remote system
+			Temp_dir
+			Remote
+			;;
+		R)
+			# Generate random names for files
+			Temp_dir
+			Random
                 v) 
+		        # Display version information
 			Temp_dir
                        Version 
                         ;;
                 V) 
+			# Update to the latest version
 			Temp_dir
                        Update
                         ;;
+		z | Z)
+			# Revert filename to the last known state
+			Temp_dir
+			Revert
 		*)
-			
+		        # Wrong option selection
              echo -e "fnc.sh: Invalid option. \nTry fnc -h for more information"
 	     exit 1
 		esac
 	done
 
-	#Call the Init function if no argument is used.
+	# Call the Init function if no argument is used.
 	Init
 
