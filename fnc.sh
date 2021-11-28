@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Filename Chnager (fnc) by Kelvin Onuchukwu 
 # Initial: Nov 2021; Last update: Dec 2021
 # N.B: This project is a work in progress. To contribute to this project, visit the Contributing.md file for basic guidelines. 
@@ -7,41 +6,48 @@
 trap func exit
 function func()
 {
-	rm error_log.txt 2>/dev/null
-        rm update.txt 2> /dev/null
+	rm ~/tmp/error_log.txt 2> /dev/null
+        rm ~/tmp/update.txt 2> /dev/null
+	#Remove ~/tmp deirectory only if it is empty
+	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
 }
 
+
+function Init ()
+{
 #Check whether script is running for the first time on the local machine. 
-If [[ -f ".first.txt" ]] 
+if [[ -f "~/filename-changer/.first.txt" ]] 
 then
-continue
+	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
 else
-echo "Create an alias **fnc** to run this script anywhere from the command line.y/n?" 
-Read ans 
-If [[ $ans == y ]] || [[ $ans == yes ]] 
+	mkdir ~/tmp 2>/dev/null
+echo -e "Create an alias fnc to run this script anywhere from the command line.y/n?"
+read ans 
+if [[ $ans == y ]] || [[ $ans == yes ]] 
 then
-echo "alias fnc='cd $HOME/filename-changer ; ./fnc.sh'" >> $HOME/.bash_aliases
-source $HOME/.bash_aliases
-echo ". $HOME/fnc.sh" >> $HOME/.bashrc
-source $HOME/.bashrc
-echo - e "Alias **fnc** has been created for command **bash $HOME/filename-changer**. \nYou can now execute this program by typing **fnc** anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
+echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
+source ~/.bash_aliases
+echo - e "Alias fnc has been created for command bash ~/filename-changer. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
+touch ~/filename-changer/.first.txt
 elif [[ $ans == n ]] || [[ $ans == no ]] 
 then
-continue 
+	echo -e "Please restart the script. \nTry fnc -h for more information" 
+	touch ~/filename-changer/.first.txt 2> /dev/null
+	exit
 else 
-echo  "Invalid input. Restart the script and try again."
+	echo "Invalid input. Restart the script and try again."
 exit
 fi
 fi
-exit
+}
 
 function F1()
 {
 var1=`ls`
 for i in $var1
 do
-	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2>error_log.txt
-	logger $0: `cat error_log.txt`
+	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
+	logger $0: `cat ~/tmp/error_log.txt`
 done
 if [ $? == 0 ]
 then
@@ -49,6 +55,7 @@ then
 else
 	echo "Error code $?, Please use journalctl for more diagnosis"
 fi
+exit
 }
 
 function F2()
@@ -60,38 +67,40 @@ function F2()
 	then
 	for i in `ls -R`
 	do
-		mv -v $i "$path/`tr '[:upper:]' '[:lower:]' < <(echo "$i")`" 2>error_log.txt
-		logger $0: `cat error_log.txt`
+		mv -v $i "$path/`tr '[:upper:]' '[:lower:]' < <(echo "$i")`" 2> ~/tmp/error_log.txt
+		logger $0: `cat ~/tmp/error_log.txt`
 	done
 	echo "TASK COMPLETED!"
 else 
 	echo -e "Path does not exist! "
 	fi
+	exit
 }
 
 function Update () 
 { 
 echo "Connecting to remote repository..."
 #If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
-timeout --preserve-status 120 git pull ~/git-projects/filename-changer > update.txt
-        if [[ grep -q "" update.txt ]] 
-        then echo "Your package has been updated to the latest version."
-        echo "Please restart this file by running **bash fnc.sh** "
-        rm .gitignore/first.txt 2>/dev/null
+mkdir ~/tmp
+timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
+        if [[ `grep -q "Unpacking objects:" ~/tmp/update.txt` ]] 
+		then
+			echo "Your package has been updated to the latest version."
+        echo "Please restart this file by running 'bash fnc.sh' "
+        rm ~/filename-changer/.first.txt 2>/dev/null
         else 
-        echo "fnc.sh: Program cannot be updated at this time. Please check your network connection and try again."
+        echo  "fnc.sh: Program cannot be updated at this time. Please check your network connection and try again."
+	exit
 fi
-logger `cat update.txt` 
+logger `cat ~/tmp/update.txt`  
 exit 
 } 
 
 function Version () 
 {
-echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #' 
-echo -e '# Filename-Changer (fnc) #'
-echo -e '# v2.0 #'
-echo -e '# https://github.com/Kelvinskell/filename-changer #'
-echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #'
+echo  "fnc.sh: Filename-Changer (fnc)"
+echo  "Version 2.0"
+echo -e "For more info, visit \e[4mhttps://github.com/Kelvinskell/filename-changer\e[10m"
 exit
 } 
 
@@ -99,6 +108,7 @@ while getopts "dDrRVv" options
 do
 	case ${options} in
 		d | D)
+			
 			F1
 			;;
 		r | R)
@@ -115,3 +125,4 @@ do
 
 		esac
 	done
+	Init
