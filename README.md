@@ -2,7 +2,7 @@
 
 
 ## Project Name And Brief Synopsis 
-This script shall be called **filename-changer**, or **fnc** for short. 
+This script shall be called **Filename Changer**, or **fnc** for short. 
 
 The basic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface.
 Users of the script will be able to instantaneously change filenames in a specific directory to lowercase characters, uppercase characters or even generate random names for the files and revert to the original names when they wish. 
