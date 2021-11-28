@@ -57,8 +57,8 @@ exit
 
 function Version () 
 {
-echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
-'echo -e '# Filename-Changer (fnc) #'
+echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #' 
+echo -e '# Filename-Changer (fnc) #'
 echo -e '# v2.0 #'
 echo -e '# https://github.com/Kelvinskell/filename-changer #'
 echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #'
