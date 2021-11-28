@@ -33,6 +33,7 @@ echo  "Invalid input. Restart the script and try again."
 exit
 fi
 fi
+exit
 
 function F1()
 {
