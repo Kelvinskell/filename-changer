@@ -11,8 +11,16 @@ function func()
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
 }
+#check if ~/tmp exists 
+if [[ -d ~/tmp]] 
+then 
+     :
+else 
+mkdir ~/tmp
+fi
 
-
+#The init function essentially checks if the user is running the script for the first time.
+#If so, it creates an alias **fnc**, so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
 function Init ()
 {
 #Check whether script is running for the first time on the local machine. 
@@ -20,14 +28,13 @@ if [[ -f "~/filename-changer/.first.txt" ]]
 then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
 else
-	mkdir ~/tmp 2>/dev/null
 echo -e "Create an alias fnc to run this script anywhere from the command line.y/n?"
 read ans 
 if [[ $ans == y ]] || [[ $ans == yes ]] 
 then
 echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
 source ~/.bash_aliases
-echo - e "Alias fnc has been created for command bash ~/filename-changer. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
+echo - e "Alias fnc has been created for command 'bash ~/filename-changer'. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
 touch ~/filename-changer/.first.txt
 elif [[ $ans == n ]] || [[ $ans == no ]] 
 then
@@ -81,7 +88,6 @@ function Update ()
 { 
 echo "Connecting to remote repository..."
 #If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
-mkdir ~/tmp
 timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
         if [[ `grep -q "Unpacking objects:" ~/tmp/update.txt` ]] 
 		then
@@ -89,7 +95,7 @@ timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
         echo "Please restart this file by running 'bash fnc.sh' "
         rm ~/filename-changer/.first.txt 2>/dev/null
         else 
-        echo  "fnc.sh: Program cannot be updated at this time. Please check your network connection and try again."
+        echo -e "fnc.sh: Program cannot be updated at this time. \nPlease check your network connection and try again."
 	exit
 fi
 logger `cat ~/tmp/update.txt`  
@@ -99,6 +105,7 @@ exit
 function Version () 
 {
 echo  "fnc.sh: Filename-Changer (fnc)"
+echo  "Author: Kelvin Onuchukwu" 
 echo  "Version 2.0"
 echo -e "For more info, visit \e[4mhttps://github.com/Kelvinskell/filename-changer\e[10m"
 exit
