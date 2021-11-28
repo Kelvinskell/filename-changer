@@ -43,8 +43,9 @@ else
 function Update () 
 { 
 echo "Connecting to remote repository..."
-git pull ~/git-projects/filename-changer > update.txt
-        if grep ... 
+#If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
+timeout --preserve-status 120 git pull ~/git-projects/filename-changer > update.txt
+        if [[ grep -q "" update.txt ]] 
         then echo "Your package has been updated to the latest version."
         echo "Please restart this file by running **bash fnc.sh** "
         rm .gitignore/first.txt 2>/dev/null
@@ -62,6 +63,7 @@ echo -e '# Filename-Changer (fnc) #'
 echo -e '# v2.0 #'
 echo -e '# https://github.com/Kelvinskell/filename-changer #'
 echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #'
+exit
 } 
 
 while getopts "dDrRVv" options
