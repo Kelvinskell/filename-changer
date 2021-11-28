@@ -3,6 +3,7 @@ trap func exit
 function func()
 {
 	rm error_log.txt 2>/dev/null
+        rm update.txt 2> /dev/null
 }
 
 function F1()
@@ -39,7 +40,22 @@ else
 	fi
 }
 
-while getopts "dDrR" options
+function Update () 
+{ 
+echo "Connecting to remote repository..."
+git pull ~/git-projects/filename-changer > update.txt
+        if grep ... 
+        then echo "Your package has been updated to the latest version."
+        echo "Please restart this file by running **bash fnc.sh** "
+        rm .gitignore/first.txt 2>/dev/null
+        else 
+        echo "fnc.sh: Program cannot be updated at this time. Please check your network connection and try again."
+fi
+logger `cat update.txt` 
+exit 
+} 
+
+while getopts "dDrRV" options
 do
 	case ${options} in
 		d | D)
@@ -48,6 +64,9 @@ do
 		r | R)
 			F2
 			;;
+                V) 
+                 Update
+                        ;;
 		*)
 			echo "Use -d or -D option for files in the current directory only, Use -r or -R option to specify a directory and peform action on the files therein."
 
