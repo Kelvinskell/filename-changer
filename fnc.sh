@@ -179,6 +179,7 @@ do
 			# Generate random names for files
 			Temp_dir
 			Random
+			;;
                 v) 
 		        # Display version information
 			Temp_dir
@@ -193,6 +194,7 @@ do
 			# Revert filename to the last known state
 			Temp_dir
 			Revert
+			;;
 		*)
 		        # Wrong option selection
              echo -e "fnc.sh: Invalid option. \nTry fnc -h for more information"
