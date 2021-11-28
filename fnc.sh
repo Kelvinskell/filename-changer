@@ -55,7 +55,16 @@ logger `cat update.txt`
 exit 
 } 
 
-while getopts "dDrRV" options
+function Version () 
+{
+echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #
+'echo -e '# Filename-Changer (fnc) #'
+echo -e '# v2.0 #'
+echo -e '# https://github.com/Kelvinskell/filename-changer #'
+echo -e '# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## #'
+} 
+
+while getopts "dDrRVv" options
 do
 	case ${options} in
 		d | D)
@@ -64,8 +73,11 @@ do
 		r | R)
 			F2
 			;;
+                v) 
+                       Version 
+                        ;;
                 V) 
-                 Update
+                       Update
                         ;;
 		*)
 			echo "Use -d or -D option for files in the current directory only, Use -r or -R option to specify a directory and peform action on the files therein."
