@@ -9,6 +9,13 @@ Please make sure to update the README.md file as appropriate.
 4. Push to the branch: `git push origin new-feature`
 5. Submit a pull request
 
-Thanks as I anticipate your awesome contributions.
+## Guidelines
+1. Include comments directly above the modified or added lines of code
+2. When writing comments, give a space between the hastag and your actual comments. e.g: \# This is a comment
+3. Comments ideally should not have a fullstop `.` at the end
+4. Names for functions should start with a capital letter and should be meaningfully related to its intended action
+5. Finally, be sure to test your code before submitting changes
+
+Thanks, as I anticipate your awesome contributions.
 
 
