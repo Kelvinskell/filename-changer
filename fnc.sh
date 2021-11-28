@@ -24,7 +24,7 @@ fi
 } 
 
 #The init function essentially checks if the user is running the script for the first time.
-#If so, it creates an alias **fnc**, so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
+#If so, it creates an alias 'fnc', so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
 function Init ()
 {
 #Check whether script is running for the first time on the local machine. 
@@ -118,10 +118,14 @@ echo  "Version 2.0"
 echo -e "For more info, visit \e[4mhttps://github.com/Kelvinskell/filename-changer\e[10m"
 exit
 } 
-
-while getopts "dDrRVv" options
+#Specify silent error checking 
+while getopts ":dDrRVv" options
 do
 	case ${options} in
+                n) 
+             # set $NULL to specified value.
+                NULL=${OPTARG}
+                       ;;
 		d | D)
 			
 			F1
@@ -136,9 +140,18 @@ do
                        Update
                         ;;
 		*)
-			echo "Use -d or -D option for files in the current directory only, Use -r or -R option to specify a directory and peform action on the files therein."
-
+			
+             echo -e "fnc.sh: Invalid option. \nTry fnc -h for more information"
 		esac
 	done
-        Temp_dir
+
+   # If $NULL is not an empty string. 
+   # Call the Init function if no option is used. 
+        if [ "$NULL" != "" ] 
+        then  
+         echo -e "fnc.sh: Invalid option selected. \nTry fnc -h for more information"
+         else 
 	Init
+        fi
+        Temp_dir
+        exit 0
