@@ -1,9 +1,37 @@
 #!/bin/bash
+
+# Filename Chnager (fnc) by Kelvin Onuchukwu 
+# Initial: Nov 2021; Last update: Dec 2021
+# N.B: This project is a work in progress. To contribute to this project, visit the Contributing.md file for basic guidelines. 
+
 trap func exit
 function func()
 {
 	rm error_log.txt 2>/dev/null
 }
+
+#Check whether script is running for the first time on the local machine. 
+If [[ -f ".first.txt" ]] 
+then
+continue
+else
+echo "Create an alias **fnc** to run this script anywhere from the command line.y/n?" 
+Read ans 
+If [[ $ans == y ]] || [[ $ans == yes ]] 
+then
+echo "alias fnc='cd $HOME/filename-changer ; ./fnc.sh'" >> $HOME/.bash_aliases
+source $HOME/.bash_aliases
+echo ". $HOME/fnc.sh" >> $HOME/.bashrc
+source $HOME/.bashrc
+echo - e "Alias **fnc** has been created for command **bash $HOME/filename-changer**. \nYou can now execute this program by typing **fnc** anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
+elif [[ $ans == n ]] || [[ $ans == no ]] 
+then
+continue 
+else 
+echo  "Invalid input. Restart the script and try again."
+exit
+fi
+fi
 
 function F1()
 {
