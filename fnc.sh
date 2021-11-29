@@ -128,12 +128,11 @@ exit
 #then 
 #    :
 #else 
-#less ~/filename-changer/.file_extensions.txt 
-#sleep 1
+#awk (some special code)  ~/filename-changer/.file_extensions.txt 
+#fi
 #echo "Input the new file extension" 
 #read file
 # ... Input required code here ... 
-#fi
 #exit 0
 #} 
 
