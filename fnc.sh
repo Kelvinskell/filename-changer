@@ -43,18 +43,17 @@ then
 echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
 source ~/.bash_aliases
 echo -e "Alias fnc has been created for command 'bash ~/filename-changer'. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
-touch ~/filename-changer/.init.txt
 elif [[ $ans == n ]] || [[ $ans == no ]] 
 then
-	echo -e "Please restart the script with an option. \nTry fnc -h for more information"
-       echo "To stop this display, create an empty ".first.txt" file in the ~/filename-changer directory."
-	touch ~/filename-changer/.init.txt 2> /dev/null
+	echo -e "Please restart the script with an option. \nTry fnc -h for more information."
+       echo "To stop this display, create an empty ".init.txt" file in the ~/filename-changer directory."
 	exit
 else 
-	echo "Invalid input. Restart the script and try again."
+	echo "fnc.sh: Invalid input. Restart the script and try again."
 exit
 fi
 fi
+touch ~/filename-changer/.init.txt
 }
 
 #####################################################GETOPTS FUNCTIONS########################################################################
@@ -79,7 +78,7 @@ touch ~/filename-changer/.history_page.txt
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
 less ~/filename-changer/.history_page.txt
 else
-       echo "Unrecognised input. Exiting program..."
+       echo "fnc.sh: Unrecognised input. Exiting program..."
 exit 0
 fi
 else 
@@ -109,7 +108,7 @@ if [ $? == 0 ]
 then
 	echo "TASK COMPLETED!"
 else
-	echo "Error code $?, Please use journalctl for more diagnosis"
+	echo "fnc.sh: Error code $?, Please use journalctl for more diagnosis"
 fi
 exit
 }
@@ -128,7 +127,7 @@ function Path()
 	done
 	echo "TASK COMPLETED!"
 else 
-	echo -e "Path does not exist! "
+	echo -e "fnc.sh: Path does not exist! "
 	fi
 	exit
 }
@@ -190,87 +189,72 @@ do
 	case ${options} in
 	       	c) 
 			# Change first letter in filename to uppercase
-			Temp_dir
-                        Init 
+			Temp_dir 
 			First
 			;;
 		 C)
 			 # Change filename to uppercase
 			Temp_dir
-                        Init
 			Uppercase
 			;;
-		 
 		e | E)
 			# Change file extension
 			Temp_dir
-                        Init
 			Extension
 			;;
 		g | G)
 			# Use glob characters to select filenames
 			Temp_dir
-                        Init
 			Glob
 			;;
 		h)
 			# Display manual page
 			Temp_dir
-                        Init
 			Help
 			;;
 		H)
 			# Display history
 			Temp_dir
-                        Init
 			History 
 			;;
 		i | I)
 			# Perform filename changes iteratively
 			Temp_dir
-                        Init
 			Iterate
 			;;
 		l | L)
 			# Change filenames in current directory to lowercase characters
 			Temp_dir
-                        Init
 			Lowercase
 			;;
 		p | P)
 			# Specify absolute path to directory containing files of interest
 			Temp_dir
-                        Init 
 			Path
 			;;
 		r)
 			# Use this script on a remote system
 			Temp_dir
-                        Init
 			Remote
 			;;
 		R)
 			# Generate random names for files
 			Temp_dir
-                        Init
 			Random
 			;;
                 v) 
 		        # Display version information
 			Temp_dir
-                        Init
                         Version 
                         ;;
                 V) 
 			# Update to the latest version
 			Temp_dir
-                        Init
                         Update
                         ;;
 		z | Z)
 			# Revert filename to the last known name
 			Temp_dir
-                        Init
 			Revert
 			;;
 		*)
