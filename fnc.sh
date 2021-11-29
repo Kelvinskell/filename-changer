@@ -183,10 +183,6 @@ else
 	exit
 }
 
-#function Iterate() 
-#{
-#} 
-
 #function Glob() 
 #{
 #} 
