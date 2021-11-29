@@ -34,7 +34,7 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 - Update to the latest version
 - Revert filename to old name
 
-To get an exhaustive description of these features and how to use them, use the help option (`fnc -h`) to view the man page.
+To get an exhaustive description of these features and how to use them, use the help option (`fnc -h`) to view the man page. Or view it directly in the _.manual_page.txt_ file. 
 
 ## Installation
 To be able to use this program, simply clone this repository to your local system. Switch (`cd`) into the cloned repository (_filename-changer_) and start the program by running `bash fnc.sh` on your terminal.
@@ -63,4 +63,4 @@ If permission is denied, the script will be able to run when `bash fnc.sh` is ex
 - Also note that this script will only accept one option at a time. If two or more options are used, the script will only interpret the first option. 
 
 **Syntax: fnc [-OPTION]**
-Use the help option (`fnc -h`) within the script to view a detailed usage description. 
+Use the help option (`fnc -h`) within the script to view a detailed usage description. Or view directly in the _.manual_page.txt_ file. 
