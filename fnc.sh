@@ -131,7 +131,7 @@ exit
 #awk (some special code)  ~/filename-changer/.file_extensions.txt 
 #fi
 #echo "Input the new file extension" 
-#read file
+#read ext
 # ... Input required code here ... 
 #exit 0
 #} 
