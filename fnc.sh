@@ -167,7 +167,7 @@ exit
 while getopts ":cCeEgGhHiIlLpPrRvVzZ" options
 do
 	case ${options} in
-	       	C)
+	       	c) 
 			# Change first letter in filename to uppercase
 			Temp_dir
 			First
