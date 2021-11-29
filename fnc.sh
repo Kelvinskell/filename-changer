@@ -73,7 +73,7 @@ less ~/filename-changer/.manual_page.txt
 function History() 
 {
 # Check if file is empty or not 
-if [ -s ~/filename-changer/.history_page.log]; then   
+if [ -s ~/filename-changer/.history_page.log ]; then   
 echo -e "Press c to clear history t\Press d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
