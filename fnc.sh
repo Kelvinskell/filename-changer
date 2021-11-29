@@ -70,14 +70,15 @@ less ~/filename-changer/.manual_page.txt
 function History() 
 {
 # Check if file is empty or not 
-if [ -s ~/filename-changer/.history_page.txt]; then   
+if [ -s ~/filename-changer/.history_page.log]; then   
 echo -e "Press c to clear history t\Press d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
-rm ~/filename-changer/.history_page.txt
-touch ~/filename-changer/.history_page.txt
+rm ~/filename-changer/.history_page.log
+touch ~/filename-changer/.history_page.log
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
-less ~/filename-changer/.history_page.txt
+# THE LINE BELOW IS STILL UNDER ACTIVE DEVELOPMENT... Change "awk" To "less" And Remove "[options]“ If You Must Run This Script At This Time. 
+awk [options] ~/filename-changer/.history_page.log
 else
        echo "fnc.sh: Unrecognised input. Exiting program..."
 exit 0
