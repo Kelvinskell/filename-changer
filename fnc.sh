@@ -6,7 +6,7 @@
 trap func exit
 function func()
 {
-	rm ~/tmp/error_log.txt 2> /dev/null
+	rm ~/tmp/error.log 2> /dev/null
         rm ~/tmp/update.txt 2> /dev/null
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
@@ -29,7 +29,7 @@ function Init ()
 # If so, it creates an alias 'fnc', so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
 # Check whether script is running for the first time on the local machine. 
 Temp_dir
-touch ~/filename-changer/.history_page.txt
+touch ~/filename-changer/.history_page.log
 if [[ -f ~/filename-changer/.init.txt ]] 
 then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
@@ -103,7 +103,7 @@ var1=`ls`
 for i in $var1
 do
 	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
-	logger $0: `cat ~/tmp/error_log.txt`
+	logger $0: `cat ~/tmp/error.log`
 done
 if [ $? == 0 ]
 then
@@ -124,7 +124,7 @@ function Path()
 	for i in `ls -R`
 	do
 		mv -v $i "$path/`tr '[:upper:]' '[:lower:]' < <(echo "$i")`" 2> ~/tmp/error_log.txt
-		logger $0: `cat ~/tmp/error_log.txt`
+		logger $0: `cat ~/tmp/error.log`
 	done
 	echo "TASK COMPLETED!"
 else 
