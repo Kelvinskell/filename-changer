@@ -39,7 +39,7 @@ else
 echo -e "Hi, welcome $USER. \tI hope you enjoy using this program."
 sleep 2
 echo -e "Create an alias fnc to run this script anywhere from the command line."
-read -p "y/n" ans 
+read -p "y/n? " ans 
 if [[ $ans == y ]] || [[ $ans == yes ]] 
 then
 echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
@@ -61,13 +61,22 @@ exit 1
 }
 
 #####################################################GETOPTS FUNCTIONS########################################################################
-#function First() 
-#{
-#} 
+function First() 
+{
+var1=`ls`
+for i in $var1
+do
+	j=`echo $i | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
+	mv -v $i $j 2> ~/tmp/error.log
+	logger $0: `cat ~/tmp/error.log 2>/dev/null`
+done
+exit 0
+} 
 
 function Help() 
 {
 less ~/filename-changer/.manual_page.txt
+exit 0
 } 
 
 function History() 
@@ -77,7 +86,10 @@ if [ -s ~/filename-changer/.history_page.log ]; then
 echo -e "Press c to clear history t\Press d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
-echo "" > ~/filename-changer/.history_page.log
+rm ~/filename-changer/.history_page.log
+touch ~/filename-changer/.history_page.log
+echo "History cleared."
+exit
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
 # THE LINE BELOW IS STILL UNDER ACTIVE DEVELOPMENT... Change "awk" To "less" And Remove "[options]“ If You Must Run This Script At This Time. 
 awk [options] ~/filename-changer/.history_page.log
@@ -91,9 +103,22 @@ exit 0
 fi
 } 
 
-#function Uppercase() 
-#{
-#} 
+function Uppercase() 
+{
+var1=`ls`
+for i in $var1
+do
+	mv -v $i `tr '[:lower:]' '[:upper:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
+	logger $0: `cat ~/tmp/error.log 2>/dev/null`
+done
+if [ $? == 0 ]
+then
+	:
+else
+	echo "fnc.sh: Error code $?, Please use journalctl to view log"
+fi
+exit
+} 
 
 #function Extension() 
 #{
@@ -110,9 +135,9 @@ do
 done
 if [ $? == 0 ]
 then
-	echo "TASK COMPLETED!"
+	:
 else
-	echo "fnc.sh: Error code $?, Please use journalctl for more diagnosis"
+	echo "fnc.sh: Error code $?, Please use journalctl to view log"
 fi
 exit
 }
@@ -121,17 +146,39 @@ function Path()
 {
 	echo "Please enter the ABSOLUTE Directory path for the files(e.g /home/$USER/Videos):"
 	read path
-	cd $path 2>/dev/null
 	if [ -d $path ]
 	then
-	for i in `ls -R`
-	do
-		mv -v $i "$path/`tr '[:upper:]' '[:lower:]' < <(echo "$i")`" 2> ~/tmp/error_log.txt
-		logger $0: `cat ~/tmp/error.log 2>/dev/null` 
-	done
-	echo "TASK COMPLETED!"
+		cd $path
+		PS3="Select how you wish to alter the filenames in this directory: "
+		select opt in extension glob uppercase lowercase quit
+		do
+			case $opt in
+				extension)
+					Extension
+					;;
+				first-letter)
+					First
+					;;
+				glob)
+					Glob
+					;;
+				uppercase)
+					Uppercase
+					;;
+				lowercase)
+					Lowercase
+					;;
+				quit)
+					exit 0
+					;;
+				*)
+					echo -e "fnc.sh: Invalid option selected. \nTry fnc -h for more information \nfnc.sh: Exiting program..."
+					exit 1
+				esac
+			done
+
 else 
-	echo -e "fnc.sh: Path does not exist! "
+	echo -e "fnc.sh: $path does not exist as a directory on this system! "
 	fi
 	exit
 }
@@ -148,10 +195,6 @@ else
 #{
 #} 
 
-#function Remote() 
-#{
-#} 
-
 #function Random() 
 #{
 #} 
@@ -159,6 +202,7 @@ else
 function Update() 
 { 
 echo "fnc.sh: Connecting to remote repository..."
+sleep 1
              git pull ~/filename-changer
         if [[ $? == 0 ]] 
 		then
@@ -189,6 +233,8 @@ do
 	case ${options} in
 	       	c) 
 			# Change first letter in filename to uppercase
+			# This will only change the first letter in the filename and will not affect other characters that make up the filename.
+			# For instance, if your filename is "BOY.txt", this option will do nothing to the filename since the first character is already in uppercase.
 			Temp_dir 
 			First
 			;;
@@ -232,12 +278,7 @@ do
 			Temp_dir
 			Path
 			;;
-		r)
-			# Use this script on a remote system
-			Temp_dir
-			Remote
-			;;
-		R)
+		r | R)
 			# Generate random names for files
 			Temp_dir
 			Random
@@ -266,4 +307,3 @@ do
 
 	# Call the Init function if no argument is used.
 	Init
-
