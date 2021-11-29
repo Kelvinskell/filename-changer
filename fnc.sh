@@ -33,6 +33,8 @@ if [[ -f ~/filename-changer/.first.txt ]]
 then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
 else
+echo -e "Hi, welcome $USER. \tI hope you enjoy using this program."
+sleep 2
 echo -e "Create an alias fnc to run this script anywhere from the command line.y/n?"
 read ans 
 if [[ $ans == y ]] || [[ $ans == yes ]] 
@@ -61,10 +63,18 @@ function First()
 
 function Help() 
 {
+less ~/filename-changer/.manual_page.txt
 } 
 
 function History() 
 {
+# Check if is empty or not 
+if [ -s ~/filename-changer/.history_page.txt]; then   
+less ~/filename-changer/.history_page.txt
+else 
+      echo "You have no history yet."
+exit 0
+fi
 } 
 
 function Uppercase() 
@@ -170,72 +180,86 @@ do
 	       	c) 
 			# Change first letter in filename to uppercase
 			Temp_dir
+                        Init 
 			First
 			;;
 		 C)
 			 # Change filename to uppercase
 			Temp_dir
+                        Init
 			Uppercase
 			;;
 		 
 		e | E)
 			# Change file extension
 			Temp_dir
+                        Init
 			Extension
 			;;
 		g | G)
 			# Use glob characters to select filenames
 			Temp_dir
+                        Init
 			Glob
 			;;
 		h)
 			# Display manual page
 			Temp_dir
+                        Init
 			Help
 			;;
 		H)
 			# Display history
 			Temp_dir
-			History
+                        Init
+			History 
 			;;
 		i | I)
 			# Perform filename changes iteratively
 			Temp_dir
+                        Init
 			Iterate
 			;;
 		l | L)
 			# Change filenames in current directory to lowercase characters
 			Temp_dir
+                        Init
 			Lowercase
 			;;
 		p | P)
 			# Specify absolute path to directory containing files of interest
 			Temp_dir
+                        Init 
 			Path
 			;;
 		r)
 			# Use this script on a remote system
 			Temp_dir
+                        Init
 			Remote
 			;;
 		R)
 			# Generate random names for files
 			Temp_dir
+                        Init
 			Random
 			;;
                 v) 
 		        # Display version information
 			Temp_dir
-                       Version 
+                        Init
+                        Version 
                         ;;
                 V) 
 			# Update to the latest version
 			Temp_dir
-                       Update
+                        Init
+                        Update
                         ;;
 		z | Z)
 			# Revert filename to the last known name
 			Temp_dir
+                        Init
 			Revert
 			;;
 		*)
