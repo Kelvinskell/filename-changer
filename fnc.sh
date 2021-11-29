@@ -29,7 +29,8 @@ function Init ()
 # If so, it creates an alias 'fnc', so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
 # Check whether script is running for the first time on the local machine. 
 Temp_dir
-if [[ -f ~/filename-changer/.first.txt ]] 
+touch ~/filename-changer/.history_page.txt
+if [[ -f ~/filename-changer/.init.txt ]] 
 then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
 else
@@ -42,12 +43,12 @@ then
 echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
 source ~/.bash_aliases
 echo -e "Alias fnc has been created for command 'bash ~/filename-changer'. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
-touch ~/filename-changer/.first.txt
+touch ~/filename-changer/.init.txt
 elif [[ $ans == n ]] || [[ $ans == no ]] 
 then
 	echo -e "Please restart the script with an option. \nTry fnc -h for more information"
        echo "To stop this display, create an empty ".first.txt" file in the ~/filename-changer directory."
-	touch ~/filename-changer/.first.txt 2> /dev/null
+	touch ~/filename-changer/.init.txt 2> /dev/null
 	exit
 else 
 	echo "Invalid input. Restart the script and try again."
@@ -161,7 +162,7 @@ timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
 		then
 			echo "Your package has been updated to the latest version."
         echo "Please restart this file by running 'bash fnc.sh' "
-        rm ~/filename-changer/.first.txt 2>/dev/null
+        rm ~/filename-changer/.init.txt 2>/dev/null
         else 
         echo -e "fnc.sh: Program cannot be updated at this time. \nfnc.sh: Please check your network connection and try again."
 	exit
