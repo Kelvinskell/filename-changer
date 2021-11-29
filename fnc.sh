@@ -74,8 +74,7 @@ if [ -s ~/filename-changer/.history_page.log]; then
 echo -e "Press c to clear history t\Press d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
-rm ~/filename-changer/.history_page.log
-touch ~/filename-changer/.history_page.log
+echo "" > ~/filename-changer/.history_page.log
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
 # THE LINE BELOW IS STILL UNDER ACTIVE DEVELOPMENT... Change "awk" To "less" And Remove "[options]“ If You Must Run This Script At This Time. 
 awk [options] ~/filename-changer/.history_page.log
