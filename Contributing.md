@@ -4,10 +4,11 @@ Please make sure to update the README.md file as appropriate.
 
 ## Procedures
 1. Fork it!
-2. Create your feature branch: `git checkout -b new-feature`
-3. Commit your changes: `git commit -am 'add-some-new-feature`
-4. Push to the branch: `git push origin new-feature`
-5. Submit a pull request
+2. (Optional) Clone to your local repository: `https://github.com/Kelvinskell/filename-changer.git` or `git@github.com:Kelvinskell/filename-changer.git` 
+3. Create your feature branch: `git checkout -b new-feature`
+4. Commit your changes: `git commit -am 'add-some-new-feature`
+5. Push to the branch: `git push origin new-feature`
+6. Submit a pull request
 
 ## Guidelines
 1. Include comments directly above the modified or added lines of code
@@ -16,6 +17,7 @@ Please make sure to update the README.md file as appropriate.
 4. Names for functions should start with a capital letter and should be meaningfully related to its intended action
 5. Finally, be sure to test your code before submitting changes
 
+You can also [Email](kelvinskelll@gmail.com) me directly!
 Thanks, as I anticipate your awesome contributions.
 
 
