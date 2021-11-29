@@ -122,6 +122,19 @@ exit
 
 #function Extension() 
 #{
+#echo "Check out common file extensions before proceeding"
+#read -p "yes or no?" 
+#if [[ $ans !== y ]] || [[ $ans !== yes ]] 
+#then 
+#    :
+#else 
+#less ~/filename-changer/.file_extensions.txt 
+#sleep 1
+#echo "Input the new file extension" 
+#read file
+# ... Input required code here ... 
+#fi
+#exit 0
 #} 
 
 
