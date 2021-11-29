@@ -25,7 +25,6 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 - [x] Use globbing to select a range of filenames 
 - [x] Display manual page
 - [x] Display usage history
-- [x] Iteratively change filenames 
 - [x] Change filenames in the current working directory to lowercase
 - [x] Specify absolute path to directory and alter selected files in that directory 
 - [x] Generate random names for files
