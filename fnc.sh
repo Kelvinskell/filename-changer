@@ -164,7 +164,7 @@ exit
 
 # Specify silent error checking 
 # Specify functions for different options
-while getopts ":dDrRVv" options
+while getopts ":cCeEgGhHiIlLpPrRvVzZ" options
 do
 	case ${options} in
 	       	C)
