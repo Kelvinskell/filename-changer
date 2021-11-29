@@ -16,7 +16,7 @@ A full description of the capabilities of this script will be given under the **
 **It is important to note that this script is specially adapted for Linux/Unix systems and may not (properly) run on Windows or other Operating Systems.**
 
 You are welcome to view the `Contributing.md` file if you wish to contribute to this project. 
-As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1) 
+As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1). 
 
 ## Features  
 - Change first letter in filename to uppercase
