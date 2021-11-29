@@ -19,20 +19,20 @@ You are welcome to view the `Contributing.md` file if you wish to contribute to 
 As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1). 
 
 ## Features  
--[x] Change only the first letter in a filename to an uppercase character 
--[x] Change filename to uppercase characters 
--[x] Change file extension for a file or list of files 
--[x] Use globbing to select a range of filenames 
--[x] Display manual page
--[x] Display usage history
--[x] Iteratively change filenames 
--[x] Change filenames in the current working directory to lowercase
--[x] Specify absolute path to directory and alter selected files in that directory 
--[x] Use this script on a remote system
--[x] Generate random names for files
--[x] Display version information
--[x] Update to the latest version
--[x] Revert filename to old name
+- [x] Change only the first letter in a filename to an uppercase character 
+- [x] Change filename to uppercase characters 
+- [x] Change file extension for a file or list of files 
+- [x] Use globbing to select a range of filenames 
+- [x] Display manual page
+- [x] Display usage history
+- [x] Iteratively change filenames 
+- [x] Change filenames in the current working directory to lowercase
+- [x] Specify absolute path to directory and alter selected files in that directory 
+- [x] Use this script on a remote system
+- [x] Generate random names for files
+- [x] Display version information
+- [x] Update to the latest version
+- [x] Revert filename to old name
 
 To get an exhaustive description of these features and how to use them, use the help option (`fnc -h`) to view the man page. Or view it directly in the _.manual_page.txt_ file. 
 
