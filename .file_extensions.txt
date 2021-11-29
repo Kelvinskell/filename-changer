@@ -1,0 +1,59 @@
+Here are some common file extensions
+
+.asc	ASCII (text) file
+.awk	awk script
+.bak	Backup copy of file
+.bz2	bzip2 compressed file
+.c	C program source code
+.C	C++ program source code
+.cc	C++ program source code
+.cgi	CGI web page program
+.dat	Data or other information
+.doc	Explanatory text file
+.dvi	DVI format document, produced by TeX/LaTeX
+.el	Emacs Lisp source code
+.elc	Compiled Emacs Lisp program
+.f	Fortran source code
+.f77	Fortran source code (f77 compiler)
+.fig	Xfig data file
+.for	Fortran source code (fort compiler)
+.gif	GIF image file
+.gz	gzip compressed file
+.h	C or C++ program header file
+.html	Hypertext Markup Language document
+.info	Emacs TeXinfo file in "info" format
+.jpg	Graphical image file in JPEG format
+.log	Logged information
+.m	Maple file
+.mat	MATLAB script
+.me	nroff input file for processing with -me option
+.mpg	MPEG animation file
+.ms	nroff input file for processing with -ms option
+.o	Object code, produced by compilers
+.pal	Xpaint palette file
+.pbm	Portable bitmap
+.pgm	Portable gray scale pixmap
+.pl	Perl program
+.png	PNG format graphics file (similar to GIF)
+.ppm	Portable pixmap
+.ps	PostScript format document
+.py	Python program
+.rast	Sun raster file
+.rgb	SGI native image file
+.shar	Shell archive (expand with sh file.shar)
+.sh     Shell scrioty
+.ss	Scheme source code
+.S	Assembly (machine) code
+.tar	Tape archive, used by tar command
+.tar.gz	Tarred-then-gzipped files
+.tex	TeX or LaTeX format document
+.tif	TIFF (Adobe) image file
+.tgz	Tarred-then-gzipped files (equivalent to .tar.gz)
+.txt	Generic text file
+.uue	uuencoded file
+.xbm	X bitmap
+.z	Packed file (from the pack command) or early gzip file
+.Z	Compressed file, from compress command
+.zip	Zipped (compressed) file, from zip command
+
+
