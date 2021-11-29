@@ -40,3 +40,20 @@ If permission is denied, the script will be able to run when `bash fnc.sh` is ex
 
 
 ## Usage 
+- Usage of this script might vary slightly depending on whether you created an alias during installation.
+- If an alias was created as intended, then you can simply run this script at anytime by executing `fnc` on your terminal.
+- If you didn't create an alias, then you have to specify the absolute path to the _fnc.sh_ file located within the _filename-changer_ directory.
+   - E.g: `bash /home/some_dir/another_dir/filename-changer/fnc.sh`.
+- To ensure optimum efficiency, run the script without options for the first time. This is **optional** anyways. 
+- Also note that this script will only accept one option at a time. If two or more options are used, the script will only interpret the first option. 
+
+**Syntax: fnc [OPTION]**
+
+
+#### Options 
+
+1. -c  Change the first letter in a filename to uppercase letter.
+2. -C  Change filename to uppercase. 
+3. -e  
+4. 
+
