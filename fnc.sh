@@ -7,7 +7,6 @@ trap func exit
 function func()
 {
 	rm ~/tmp/error.log 2> /dev/null
-        rm ~/tmp/update.txt 2> /dev/null
         rm ~/tmp/temp.txt   2> /dev/null
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
@@ -159,19 +158,15 @@ else
 
 function Update() 
 { 
-echo "Connecting to remote repository..."
-# If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
-timeout --preserve-status 120 git pull ~/filename-changer > ~/tmp/update.txt
-        if [[ `grep -q "Unpacking objects:" ~/tmp/update.txt` ]] 
+echo "fnc.sh: Connecting to remote repository..."
+             git pull ~/filename-changer
+        if [[ $? == 0 ]] 
 		then
-			echo "Your package has been updated to the latest version."
-        echo "Please restart this file by running 'bash fnc.sh' "
-        rm ~/filename-changer/.init.txt 2>/dev/null
+			:
         else 
         echo -e "fnc.sh: Program cannot be updated at this time. \nfnc.sh: Please check your network connection and try again."
 	exit
 fi
-logger `cat ~/tmp/update.txt`  
 exit 
 } 
 
