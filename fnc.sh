@@ -38,8 +38,8 @@ else
         touch ~/filename-changer/.history_page.log 2>/dev/null
 echo -e "Hi, welcome $USER. \tI hope you enjoy using this program."
 sleep 2
-echo -e "Create an alias fnc to run this script anywhere from the command line.y/n?"
-read ans 
+echo -e "Create an alias fnc to run this script anywhere from the command line."
+read -p "y/n" ans 
 if [[ $ans == y ]] || [[ $ans == yes ]] 
 then
 echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
