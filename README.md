@@ -13,13 +13,28 @@ And much more!
 
 A full description of the capabilities of this script will be given under the **features** section. 
 
-It is important to note that this script is specially adapted for Linux/Unix systems and may not (properly) run on Windows or other Operating Systems.
+**It is important to note that this script is specially adapted for Linux/Unix systems and may not (properly) run on Windows or other Operating Systems.**
 
 You are welcome to view the `Contributing.md` file if you wish to contribute to this project. 
 As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [LinkedIn](https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1) 
 
-## Features 
+## Features  
+- Change first letter in filename to uppercase
+- Change filename to uppercase
+- Change file extension
+- Use glob characters to select filenames
+- Display manual page
+- Display history
+- Perform filename changes iteratively
+- Change filenames in current directory to lowercase
+- Specify absolute path to directory containing files of interest
+- Use this script on a remote system
+- Generate random names for files
+- Display version information
+- Update to the latest version
+- Revert filename to old name
 
+To get an exhaustive description of these features and how to use them, use the help option (`fnc -h`) to view the man page.
 
 ## Installation
 To be able to use this program, simply clone this repository to your local system. Switch (`cd`) into the cloned repository (_filename-changer_) and start the program by running `bash fnc.sh` on your terminal.
