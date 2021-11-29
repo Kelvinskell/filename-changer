@@ -68,9 +68,19 @@ less ~/filename-changer/.manual_page.txt
 
 function History() 
 {
-# Check if is empty or not 
+# Check if file is empty or not 
 if [ -s ~/filename-changer/.history_page.txt]; then   
+echo -e "Press c to clear history t\Press d to view history" 
+read ans
+if [[ $ans == c ]] || [[ $ans == C ]]; then
+rm ~/filename-changer/.history_page.txt
+touch ~/filename-changer/.history_page.txt
+elif [[ $ans == d ]] || [[ $ans == D ]]; then 
 less ~/filename-changer/.history_page.txt
+else
+       echo "Unrecognised input. Exiting program..."
+exit 0
+fi
 else 
       echo "You have no history yet."
 exit 0
