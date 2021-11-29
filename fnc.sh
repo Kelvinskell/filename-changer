@@ -44,6 +44,7 @@ read ans
 if [[ $ans == y ]] || [[ $ans == yes ]] 
 then
 echo "alias fnc='bash ~/filename-changer/fnc.sh'" >> ~/.bash_aliases
+sleep 1
 source ~/.bash_aliases
 echo -e "Alias fnc has been created for command 'bash ~/filename-changer'. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
 elif [[ $ans == n ]] || [[ $ans == no ]] 
