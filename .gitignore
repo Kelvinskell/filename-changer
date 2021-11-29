@@ -1,3 +1,4 @@
 *.txt*
 !.manual_page.txt
+!.file_extensions.txt
 *.log*
