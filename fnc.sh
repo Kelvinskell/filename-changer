@@ -259,11 +259,6 @@ do
 			Temp_dir
 			History 
 			;;
-		i | I)
-			# Perform filename changes iteratively
-			Temp_dir
-			Iterate
-			;;
 		l | L)
 			# Change filenames in current directory to lowercase characters
 			Temp_dir
