@@ -55,8 +55,28 @@ fi
 }
 
 #####################################################GETOPTS FUNCTIONS########################################################################
+function First() 
+{
+} 
 
-function Lowecase()
+function Help() 
+{
+} 
+
+function History() 
+{
+} 
+
+function Uppercase() 
+{
+} 
+
+function Extension() 
+{
+} 
+
+
+function Lowercase()
 {
 var1=`ls`
 for i in $var1
@@ -92,7 +112,27 @@ else
 	exit
 }
 
-function Update () 
+function Iterate() 
+{
+} 
+
+function Glob() 
+{
+} 
+
+function Revert() 
+{
+} 
+
+function Remote() 
+{
+} 
+
+function Random() 
+{
+} 
+
+function Update() 
 { 
 echo "Connecting to remote repository..."
 # If "git pull" fails to run within 2 minutes, exit program with original Exit code, even when 'kill' signal is sent. 
@@ -110,11 +150,12 @@ logger `cat ~/tmp/update.txt`
 exit 
 } 
 
-function Version () 
+function Version() 
 {
 echo  "fnc.sh: Filename-Changer (fnc)"
 echo  "Author: Kelvin Onuchukwu" 
 echo  "Version 2.0"
+# Highlight and underline the Weblink
 echo -e "For more info, visit \e[4mhttps://github.com/Kelvinskell/filename-changer\e[10m"
 exit
 } 
