@@ -107,7 +107,7 @@ var1=`ls`
 for i in $var1
 do
 	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
-	logger $0: `cat ~/tmp/error.log`
+	logger $0: `cat ~/tmp/error.log 2>/dev/null`
 done
 if [ $? == 0 ]
 then
@@ -128,7 +128,7 @@ function Path()
 	for i in `ls -R`
 	do
 		mv -v $i "$path/`tr '[:upper:]' '[:lower:]' < <(echo "$i")`" 2> ~/tmp/error_log.txt
-		logger $0: `cat ~/tmp/error.log`
+		logger $0: `cat ~/tmp/error.log 2>/dev/null` 
 	done
 	echo "TASK COMPLETED!"
 else 
