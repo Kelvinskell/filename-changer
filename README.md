@@ -28,7 +28,6 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 - [x] Iteratively change filenames 
 - [x] Change filenames in the current working directory to lowercase
 - [x] Specify absolute path to directory and alter selected files in that directory 
-- [x] Use this script on a remote system
 - [x] Generate random names for files
 - [x] Display version information
 - [x] Update to the latest version
