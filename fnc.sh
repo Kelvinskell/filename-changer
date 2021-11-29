@@ -8,6 +8,7 @@ function func()
 {
 	rm ~/tmp/error.log 2> /dev/null
         rm ~/tmp/update.txt 2> /dev/null
+        rm ~/tmp/temp.txt   2> /dev/null
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
 }
@@ -29,11 +30,13 @@ function Init ()
 # If so, it creates an alias 'fnc', so the user can run this script from any directory within their filesystem by simply typing 'fnc'. 
 # Check whether script is running for the first time on the local machine. 
 Temp_dir
-touch ~/filename-changer/.history_page.log
 if [[ -f ~/filename-changer/.init.txt ]] 
 then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
+exit 0
 else
+        touch ~/filename-changer/.file_inodes.log
+        touch ~/filename-changer/.history_page.log
 echo -e "Hi, welcome $USER. \tI hope you enjoy using this program."
 sleep 2
 echo -e "Create an alias fnc to run this script anywhere from the command line.y/n?"
