@@ -124,26 +124,26 @@ fi
 exit
 } 
 
-#function Extension() 
-#{
-#echo "Check out common file extensions before proceeding"
-#read -p "yes or no?" 
-#if [[ $ans !== y ]] || [[ $ans !== yes ]] 
-#then 
-#    :
-#else 
-#awk (some special code)  ~/filename-changer/.file_extensions.txt 
-#fi
-#echo "Input the new file extension \tDo not include '.'" 
-#read ext
-#var1=`ls`
-#for i in $var1
-#do
-#j=$(echo "$i" | cut -f 1 -d '.') 
-#mv -v $i $j.$ext 2>/dev/null
-#done
-#exit 0
-#} 
+function Extension() 
+{
+echo "Check out common file extensions before proceeding"
+read -p "yes or no?" 
+if [[ $ans !== y ]] || [[ $ans !== yes ]] 
+then 
+    :
+else 
+awk (some special code)  ~/filename-changer/.file_extensions.txt 
+fi
+echo "Input the new file extension \tDo not include '.'" 
+read ext
+var1=`ls`
+for i in $var1
+do
+j=$(echo "$i" | cut -f 1 -d '.') 
+mv -v $i $j.$ext 2>/dev/null
+done
+exit 0
+} 
 
 
 function Lowercase()
