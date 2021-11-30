@@ -134,9 +134,14 @@ exit
 #else 
 #awk (some special code)  ~/filename-changer/.file_extensions.txt 
 #fi
-#echo "Input the new file extension" 
+#echo "Input the new file extension \tDo not include '.'" 
 #read ext
-# ... Input required code here ... 
+#var1=`ls`
+#for i in $var1
+#do
+#j=$(echo "$i" | cut -f 1 -d '.') 
+#mv -v $i $j.$ext 2>/dev/null
+#done
 #exit 0
 #} 
 
