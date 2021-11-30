@@ -1,1 +1,42 @@
 
+Syntax: fnc -[OPTION]
+
+The basic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
+
+-c   Change only the first letter in a filename to an uppercase character.
+
+-C   Change filename to uppercase characters. 
+
+-e   Change file extension for a file or list of files.
+
+-E   Same as -e. 
+
+-g   Use globbing to select a range of filenames. 
+
+-G   Same as -g. 
+
+-h   Display hekoy.
+
+-H   Display or erase history.
+
+-l   Change filenames in the current working directory to lowercase.
+
+-L   Same as -l. 
+
+-p   Specify absolute path to directory and alter selected files in that directory.
+
+-P   Same as -p.
+
+-r   Generate random names for files.
+
+-R   Same as -r.
+
+-v   Display version information.
+
+-V   Update to the latest version. 
+
+-z   Revert filename to old name.
+
+-Z   Same as -z.
+
+For more information, visit https://github.com/Kelvinskell/filename-changer.git
