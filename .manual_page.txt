@@ -1,3 +1,4 @@
+Filename Changer (fnc) 
 
 Syntax: fnc -[OPTION]
 
