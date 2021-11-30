@@ -60,8 +60,8 @@ BUG REPORTS
        If  you  find a bug in fnc, you should report it.  But first, you should make sure that it really is a bug, and that it appears in
        the latest version of fnc.  The latest version is always available from https://github.com/Kelvinskell/filename-changer.git
 
-       Once you have determined that a bug actually exists, use the bashbug command to submit a bug report.  If you have a  fix,  you  are
-       encouraged  to  mail  that as well!  Suggestions and `philosophical' bug reports may be mailed to kelvinskell@gmail.com or submitted as a pull request to the GitHub repository. 
+       If you have a  fix,  you  are encouraged  to  mail  that as well! Better still, submit a pull request.
+       Suggestions and `philosophical' bug reports may be mailed to kelvinskell@gmail.com or submitted as a pull request to https://github.com/Kelvinskell/filename-changer.git
 
        ALL bug reports should include:
 

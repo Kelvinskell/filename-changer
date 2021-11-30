@@ -95,7 +95,7 @@ touch ~/filename-changer/.file_inodes.log
 echo "History cleared."
 exit
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
-awk -f ~/filename-changer/history.awk ~/filename-changer/.history_page.log
+	awk -f ~/filename-changer/history.awk ~/filename-changer/.history_page.log
 exit 0
 else
        echo "fnc.sh: Unrecognised input. Exiting program..."
