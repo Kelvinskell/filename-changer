@@ -88,13 +88,15 @@ if [ -s ~/filename-changer/.history_page.log ]; then
 echo -e "Press c to clear history t\Press d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
-rm ~/filename-changer/.history_page.log
+rm ~/filename-changer/.history_page.log 2>/dev/null
+rm ~/filename-changer/.file_inodes.log 2>/dev/null
 touch ~/filename-changer/.history_page.log
+touch ~/filename-changer/.file_inodes.log
 echo "History cleared."
 exit
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
 # THE LINE BELOW IS STILL UNDER ACTIVE DEVELOPMENT... Change "awk" To "less" And Remove "[options]“ If You Must Run This Script At This Time. 
-awk [options] ~/filename-changer/.history_page.log
+#awk [options] ~/filename-changer/.history_page.log
 else
        echo "fnc.sh: Unrecognised input. Exiting program..."
 exit 0
@@ -163,7 +165,8 @@ function Path()
 	if [ -d $path ]
 	then
 		cd $path
-		PS3="Select how you wish to alter the filenames in this directory: "
+		PS3="Choose how you wish to alter the filenames in this directory: "
+                echo "Press a number to select an option." 
 		select opt in extension glob uppercase lowercase quit
 		do
 			case $opt in
