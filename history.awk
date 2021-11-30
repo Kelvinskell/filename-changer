@@ -1,6 +1,6 @@
 BEGIN {
-	print " DATE \t INODE \t OLD FILENAME \t NEW FILENAME "
-	print "------- \t ------- \t ---------- \t ---------- "
+	print "DATE \t INODE \t OLD FILENAME \t  NEW FILENAME"
+	print "---- \t ----- \t ------------ \t -------------"
 	FS=":"
 }
 {

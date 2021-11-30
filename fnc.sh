@@ -95,8 +95,8 @@ touch ~/filename-changer/.file_inodes.log
 echo "History cleared."
 exit
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
-# THE LINE BELOW IS STILL UNDER ACTIVE DEVELOPMENT... Change "awk" To "less" And Remove "[options]“ If You Must Run This Script At This Time. 
-#awk [options] ~/filename-changer/.history_page.log
+awk -f ~/filename-changer/history.awk ~/filename-changer/.history_page.log
+exit 0
 else
        echo "fnc.sh: Unrecognised input. Exiting program..."
 exit 0
