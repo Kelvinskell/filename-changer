@@ -205,6 +205,17 @@ else
 
 #function Revert() 
 #{
+echo "Enter current filename: "
+read name
+# Check if file exists
+if [ `grep -q $name ~/filename-changer/.history_page.log` ]
+then
+	# Get the whole line and cut out the second field
+	old=$(grep -w $name ~/filename-changer/.history_page.log || cut -d: -f 2)
+	new=$(grep -w $name ~/filename-changer/.history_page.log || cut -d: -f 3)
+	mv -v $new $old 2> .error.log
+
+
 #} 
 
 #function Random() 
