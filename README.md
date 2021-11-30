@@ -20,7 +20,6 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 - [x] Change only the first letter in a filename to an uppercase character 
 - [x] Change filename to uppercase characters 
 - [x] Change file extension for a file or list of files 
-- [x] Use globbing to select a range of filenames 
 - [x] Display manual page
 - [x] Display usage history
 - [x] Change filenames in the current working directory to lowercase

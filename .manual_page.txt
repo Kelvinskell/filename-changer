@@ -21,10 +21,6 @@ OPTIONS
 
 -E   Same as -e. 
 
--g   Use globbing to select a range of filenames. 
-
--G   Same as -g. 
-
 -h   Display hekoy.
 
 -H   Display or erase history.

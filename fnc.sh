@@ -203,10 +203,6 @@ else
 	exit
 }
 
-#function Glob() 
-#{
-#} 
-
 #function Revert() 
 #{
 #} 
@@ -263,11 +259,6 @@ do
 			# Change file extension
 			Temp_dir
 			Extension
-			;;
-		g | G)
-			# Use glob characters to select filenames
-			Temp_dir
-			Glob
 			;;
 		h)
 			# Display manual page
