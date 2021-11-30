@@ -1,3 +1,5 @@
+Common file extensions and their brief descriptions.
+
 .asc	ASCII (text) file
 .awk	awk script
 .bak	Backup copy of file
