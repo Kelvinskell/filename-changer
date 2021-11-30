@@ -1,9 +1,20 @@
 Filename Changer (fnc) 
 
-Syntax: fnc -[OPTION]
+NAME
+    Filename Changer (fnc)
 
-The basic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
+SYSNOPSIS
+    fnc -[OPTION]
 
+COPYRIGHT
+    (C) 2021 Kelvin Onuchukwu 
+     MIT License   
+
+DESCRIPTION
+The baic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
+Please visit the README file on the GitHub repository: https://github.com/Kelvinskell/filename-changer.git to get a full description.
+
+OPTIONS
 -c   Change only the first letter in a filename to an uppercase character.
 
 -C   Change filename to uppercase characters. 
@@ -39,5 +50,27 @@ The basic function of this script is to automate the renaming of files in order 
 -z   Revert filename to old name.
 
 -Z   Same as -z.
+
+AUTHOR
+Name: kelvin Onuchukwu
+Email: kelvinskell@gmail.com
+Linkedin: https://www.linkedin.com/in/kelvin-onuchukwu-3460871a1
+
+If you would like to contribute to this project, first visit the Contributing.md file located on the GitHub repository.
+
+BUG REPORTS
+       If  you  find a bug in fnc, you should report it.  But first, you should make sure that it really is a bug, and that it appears in
+       the latest version of fnc.  The latest version is always available from https://github.com/Kelvinskell/filename-changer.git
+
+       Once you have determined that a bug actually exists, use the bashbug command to submit a bug report.  If you have a  fix,  you  are
+       encouraged  to  mail  that as well!  Suggestions and `philosophical' bug reports may be mailed to kelvinskell@gmail.com or submitted as a pull request to the GitHub repository. 
+
+       ALL bug reports should include:
+
+       The version number of fnc
+       The hardware and operating system
+       The compiler used to compile
+       A description of the bug behaviour
+       A short script or `recipe' which exercises the bug
 
 For more information, visit https://github.com/Kelvinskell/filename-changer.git
