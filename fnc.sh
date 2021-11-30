@@ -128,7 +128,7 @@ function Extension()
 {
 echo "Check out common file extensions before proceeding"
 read -p "yes or no?" 
-if [[ $ans !== y ]] || [[ $ans !== yes ]] 
+if [[ $ans != y ]] || [[ $ans != yes ]] 
 then 
     :
 else 
