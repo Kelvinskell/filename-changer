@@ -11,7 +11,7 @@ trap func exit
 function func()
 {
 	rm ~/tmp/error.log 
-	rm ~/filename-changer/.random.txt 
+	rm ~/filename-changer/random.txt 
         rm ~/tmp/temp.txt   
         rm ~/tmp/hist_temp.txt 
 	#Remove ~/tmp deirectory only if it is empty
