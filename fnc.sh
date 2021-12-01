@@ -131,7 +131,8 @@ if [[ $ans == y ]] || [[ $ans == yes ]]
 then 
 less  ~/filename-changer/file_extensions.txt 
 fi
-read -p "Exclude directories? " dir
+echo "Exclude directories? "
+read  dir
 if [[ $dir == n ]] || [[ $dir == no ]]
 then
 echo -e "Input the new file extension \tDo not include '.'" 
@@ -158,9 +159,9 @@ j=$(echo "$i" | cut -f 1 -d '.')
 mv -v $i $j.$ext 2>/dev/null
 	fi
 done
-exit 0
-} 
-
+fi
+exit
+}
 
 function Lowercase()
 {
