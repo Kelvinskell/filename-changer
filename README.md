@@ -53,6 +53,7 @@ If permission is denied, the script will be able to run when `bash fnc.sh` is ex
   - If an alias was created as intended, then you can simply run this script at anytime by executing `fnc` on your terminal.
 - If you didn't create an alias, then you have to specify the absolute path to the _fnc.sh_ file located within the _filename-changer_ directory.
    - E.g: `bash /home/some_dir/another_dir/filename-changer/fnc.sh`.
+- If `fnc` does not start up the script, you will need to manually `source` your _.bash_aliases_ file.
 - Also note that this script will only accept one option at a time. If two or more options are used, the script will only interpret the first option. 
 
 **Syntax: fnc [-OPTION]**
