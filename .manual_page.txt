@@ -64,6 +64,7 @@ BUG REPORTS
        A short script or `recipe' which exercises the bug
 
 BUGS
-More likely than not, this script will not source the .bash_aliases file, even though it'll create the alias 'fnc'.
-The best way to work around this is to manually source the .bash_aliases file (source ~/.bash_aliases). This is especially if you intend to call up the script at anytime by just running the alias 'fnc'.
-For more information, visit https://github.com/Kelvinskell/filename-changer.git
+      Most likely than not, this script will not source the .bash_aliases file, even though it'll create the alias 'fnc'.
+      The best way to work around this is to manually source the .bash_aliases file (source ~/.bash_aliases). 
+      This is especially important if you intend to call up the script at anytime by just running the alias 'fnc'.
+      For more information, visit https://github.com/Kelvinskell/filename-changer.git
