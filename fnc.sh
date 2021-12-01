@@ -139,7 +139,7 @@ var1=`ls`
 for i in $var1
 do 
 	j=$(tr '[:lower:]' '[:upper:]' < <(echo "$i"))
-	mv -v $i $j 2> ~/tmp/error_log.txt
+	mv -v $i $j 2> ~/tmp/error.log
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 done
 exit
@@ -154,7 +154,7 @@ do
 		:
 	else
 		j=$(tr '[:lower:]' '[:upper:]' < <(echo "$i"))
-	mv -v $i $j 2> ~/tmp/error_log.txt
+	mv -v $i $j 2> ~/tmp/error.log
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
