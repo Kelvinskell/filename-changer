@@ -65,14 +65,34 @@ exit 1
 #####################################################GETOPTS FUNCTIONS########################################################################
 function First() 
 {
+	echo "Exclude directories? "
+read  dir
+if [[ $dir == n ]] || [[ $dir == no ]]
+then
+	# Execute action on both files and directories
 var1=`ls`
 for i in $var1
 do
 	j=`echo $i | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
 	mv -v $i $j 2> ~/tmp/error.log
-	logger $0: `cat ~/tmp/error.log 2>/dev/null`
 done
 exit 0
+elif [[ $dir == y ]] || [[ $dir == yes ]]
+then
+	# Execute action on only filenames
+var1=`ls`
+for i in $var1
+do
+	if [ -d $i ]
+	then
+		:
+	else
+	j=`echo $i | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
+	mv -v $i $j 2> ~/tmp/error.log
+	fi
+done
+fi
+exit
 } 
 
 function Help() 
@@ -89,7 +109,6 @@ echo -e "Press c to clear history \tPress d to view history"
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
 rm ~/filename-changer/.history_page.log 2>/dev/null
-rm ~/filename-changer/.file_inodes.log 2>/dev/null
 touch ~/filename-changer/.history_page.log
 touch ~/filename-changer/.file_inodes.log
 echo "History cleared."
@@ -109,17 +128,30 @@ fi
 
 function Uppercase() 
 {
+echo "Exclude directories? "
+read  dir
+if [[ $dir == n ]] || [[ $dir == no ]]
+then
+	# Execute action on both files and directories
 var1=`ls`
 for i in $var1
 do
 	mv -v $i `tr '[:lower:]' '[:upper:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
-	logger $0: `cat ~/tmp/error.log 2>/dev/null`
 done
-if [ $? == 0 ]
+exit
+elif [[ $dir == y ]] || [[ $dir == yes ]]
 then
-	:
-else
-	echo "fnc.sh: Error code $?, Please use journalctl to view log"
+	# Execute action on only filenames
+var1=`ls`
+for i in $var1
+do
+	if [ -d $i ]
+	then
+		:
+	else
+	mv -v $i `tr '[:lower:]' '[:upper:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
+	fi
+done
 fi
 exit
 } 
@@ -132,6 +164,10 @@ if [[ $ans == y ]] || [[ $ans == yes ]]
 then 
 less  ~/filename-changer/file_extensions.txt 
 fi
+echo "Exclude directories? "
+read  dir
+if [[ $dir == n ]] || [[ $dir == no ]]
+then
 echo -e "Input the new file extension \tDo not include '.'" 
 read ext
 var1=`ls`
@@ -141,22 +177,51 @@ j=$(echo "$i" | cut -f 1 -d '.')
 mv -v $i $j.$ext 2>/dev/null
 done
 exit 0
-} 
-
+elif [[ $dir == y ]] || [[ $dir == yes ]]
+then
+echo -e "Input the new file extension \tDo not include '.'" 
+read ext
+var1=`ls`
+for i in $var1
+do
+	if [ -d $i ]
+	then
+		:
+	else
+j=$(echo "$i" | cut -f 1 -d '.') 
+mv -v $i $j.$ext 2>/dev/null
+	fi
+done
+fi
+exit
+}
 
 function Lowercase()
 {
+echo "Exclude directories? "
+read  dir
+if [[ $dir == n ]] || [[ $dir == no ]]
+then
+	# Execute action on both files and directories
 var1=`ls`
 for i in $var1
 do
 	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
-	logger $0: `cat ~/tmp/error.log 2>/dev/null`
 done
-if [ $? == 0 ]
+exit
+elif [[ $dir == y ]] || [[ $dir == yes ]]
 then
-	:
-else
-	echo "fnc.sh: Error code $?, Please use journalctl to view log"
+	# Execute action on only filenames
+var1=`ls`
+for i in $var1
+do
+	if [ -d $i ]
+	then
+		:
+	else
+	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
+	fi
+done
 fi
 exit
 }
