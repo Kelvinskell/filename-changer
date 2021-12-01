@@ -9,6 +9,7 @@ function func()
 	rm ~/tmp/error.log 2> /dev/null
 	rm ~/filename-changer/.random.txt 2>/dev/null
         rm ~/tmp/temp.txt   2> /dev/null
+        rm ~/tmp/hist_temp.txt 2>/dev/null
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
 }
@@ -279,6 +280,22 @@ else
 
 #function Revert() 
 #{
+# echo "Enter the current filename" 
+# read filename
+# Check if filename exists in history
+# cut -d: -f 3 ~/filename-changer/.history_page.log > ~/tmp/hist_temp.txt
+# if [ tac ~/tmp/hist_temp1.txt | grep -q -w -m1 $filename ] 
+# then 
+# j=$filename 
+# tac ~/filename-changer/.history_page.txt | grep -m1 $filename > ~/tmp/hist_temp.txt
+# i=${cut -d: -f 2 ~/tmp/hist_temp.txt) 
+# mv -v $i $j 2>/dev/null
+# echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
+# else 
+# echo "Sorry, $filename does not exist in our record."
+# exit 
+# fi
+# exit
 #} 
 
 function Random() 
