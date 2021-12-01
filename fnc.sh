@@ -215,13 +215,26 @@ read ans
 if [ $ans == r ] || [ $ans == R ]
 then
 	var1=`ls`
-	for i in $(var1)
+	for i in $var1
 	do
-nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM random.txt|tr -d '0123456789')
+		# Generate a random number
+		# Choose a random name from the dictionary and match it to the the random number
+		# Cut out the random number and assign the new name to a variable
+nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
 mv -v $i $random 2>/dev/null
 done
-#else
+else
+	echo "enter the ABSOLUTE PATH for the file (e.g: /home/$USER/tmp/my_file.txt) "
+	read old_path
+	if [[ -f $old_path ]]
+	then
+	nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;new_path=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
+		mv -v "$old_path" "$new_path" 2>/dev/null
+	else 
+		echo "$old_path does not exist as a file on this system."
+	fi
 fi
+exit
 } 
 
 function Update() 
