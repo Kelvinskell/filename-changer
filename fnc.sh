@@ -34,7 +34,6 @@ then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
 exit 0
 else
-        touch ~/filename-changer/.file_inodes.log 2>/dev/null
         touch ~/filename-changer/.history_page.log 2>/dev/null
 echo -e "Hi, welcome $USER. \tI hope you enjoy using this program."
 sleep 2
@@ -178,9 +177,6 @@ function Path()
 					;;
 				first-letter)
 					First
-					;;
-				glob)
-					Glob
 					;;
 				uppercase)
 					Uppercase
