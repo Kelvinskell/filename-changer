@@ -85,7 +85,7 @@ function History()
 {
 # Check if file is empty or not 
 if [ -s ~/filename-changer/.history_page.log ]; then   
-echo -e "Press c to clear history t\Press d to view history" 
+echo -e "Press c to clear history \tPress d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
 rm ~/filename-changer/.history_page.log 2>/dev/null
