@@ -7,7 +7,7 @@ trap func exit
 function func()
 {
 	rm ~/tmp/error.log 2> /dev/null
-	rm ~/filename-changer/.random.txt
+	rm ~/filename-changer/.random.txt 2>/dev/null
         rm ~/tmp/temp.txt   2> /dev/null
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
