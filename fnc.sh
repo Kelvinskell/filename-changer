@@ -116,7 +116,7 @@ touch ~/filename-changer/.file_inodes.log
 echo "History cleared."
 exit
 elif [[ $ans == d ]] || [[ $ans == D ]]; then 
-	awk -f ~/filename-changer/history.awk ~/filename-changer/.history_page.log
+	awk -f ~/filename-changer/history.awk ~/filename-changer/.history_page.log |less
 exit 0
 else
        echo "fnc.sh: Unrecognised input. Exiting program..."
@@ -214,7 +214,8 @@ then
 var1=`ls`
 for i in $var1
 do
-	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
+	j=$(tr '[:upper:]' '[:lower:]' < <(echo "$i"))
+	mv -v $i $j 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 done
 exit
@@ -228,7 +229,8 @@ do
 	then
 		:
 	else
-	mv -v $i `tr '[:upper:]' '[:lower:]' < <(echo "$i")` 2> ~/tmp/error_log.txt
+		j=$(tr '[:upper:]' '[:lower:]' < <(echo "$i"))
+	mv -v $i $j
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
@@ -293,7 +295,7 @@ then
 		# Cut out the random number and assign the new name to a variable
 nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
 mv -v $i $random 2>/dev/null
-echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
+echo "`date +%D`:$i:$random:" >> ~/filename-changer/.history_page.log
 done
 else
 	echo "enter the ABSOLUTE PATH for the file (e.g: /home/$USER/tmp/my_file.txt) "
@@ -302,7 +304,7 @@ else
 	then
 	nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;new_path=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
 		mv -v "$old_path" "$new_path" 2>/dev/null
-echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
+echo "`date +%D`:$i:$new_path:" >> ~/filename-changer/.history_page.log
 	else 
 		echo "$old_path does not exist as a file on this system."
 	fi
