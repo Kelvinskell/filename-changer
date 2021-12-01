@@ -203,20 +203,23 @@ else
 	exit
 }
 
-#function Revert() 
-#{
+function Revert() 
+{
 echo "Enter current filename: "
 read name
 # Check if file exists
-if [ `grep -q $name ~/filename-changer/.history_page.log` ]
+if [[ `grep  $name ~/filename-changer/.history_page.log` ]]
 then
 	# Get the whole line and cut out the second field
 	old=$(grep -w $name ~/filename-changer/.history_page.log || cut -d: -f 2)
 	new=$(grep -w $name ~/filename-changer/.history_page.log || cut -d: -f 3)
-	mv -v $new $old 2> .error.log
-
-
-#} 
+	mv -v "$new" "$old" 2>~/dev/null
+	exit
+else
+	echo "$name cannot be found. \nPlease check your spelling and try again."
+	exit 1
+fi
+} 
 
 #function Random() 
 #{
