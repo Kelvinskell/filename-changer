@@ -41,10 +41,6 @@ OPTIONS
 
 -V   Update to the latest version. 
 
--z   Revert filename to old name.
-
--Z   Same as -z.
-
 AUTHOR
 Name: kelvin Onuchukwu
 Email: kelvinskell@gmail.com

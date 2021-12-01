@@ -6,8 +6,7 @@ This script shall be called **Filename Changer**, or **fnc** for short.
 
 The basic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
 This is essentially, a utility-packed bash script that makes it easier for users to quickly change filenames in a directory, or even across a file system, to lowercase characters, uppercase characters, and many more!
-You can even choose to hide your files in plain sight by generating random names for them, and reverting to their original names when you wish!
-Users will have a variety of options to change filenames in a directory.
+You can even choose to hide your files in plain sight by generating random names for them!
 
 A full description of the capabilities of this script will be given under the **features** section. 
 
@@ -27,7 +26,6 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 - [x] Generate random names for files
 - [x] Display version information
 - [x] Update to the latest version
-- [x] Revert filename to old name
 
 To get an exhaustive description of these features and how to use them, use the help option (`fnc -h`) to view the man page. Or view it directly in the _.manual_page.txt_ file. 
 

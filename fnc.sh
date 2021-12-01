@@ -203,27 +203,9 @@ else
 	exit
 }
 
-function Revert() 
-{
-echo "Enter current filename: "
-read name
-# Check if file exists
-if [[ `grep  $name ~/filename-changer/.history_page.log` ]]
-then
-	# Get the whole line and cut out the second field
-	old=$(grep -w $name ~/filename-changer/.history_page.log || cut -d: -f 2)
-	new=$(grep -w $name ~/filename-changer/.history_page.log || cut -d: -f 3)
-	mv -v "$new" "$old" 2>~/dev/null
-	exit
-else
-	echo "$name cannot be found. \nPlease check your spelling and try again."
-	exit 1
-fi
-} 
-
 #function Random() 
 #{
-#} 
+#}
 
 function Update() 
 { 
@@ -308,11 +290,6 @@ do
 			# Update to the latest version
 			Temp_dir
                         Update
-                        ;;
-		z | Z)
-			# Revert filename to the last known name
-			Temp_dir
-			Revert
 			;;
 		*)
 		        # Wrong option selection
