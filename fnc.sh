@@ -7,6 +7,7 @@ trap func exit
 function func()
 {
 	rm ~/tmp/error.log 2> /dev/null
+	rm ~/filename-changer/.random.txt 2>/dev/null
         rm ~/tmp/temp.txt   2> /dev/null
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
@@ -199,9 +200,38 @@ else
 	exit
 }
 
-#function Random() 
+#function Revert() 
 #{
-#}
+#} 
+
+function Random() 
+{
+echo -e "Press r to rename all files in this directory \tPress s to select a single file to rename "
+read ans
+if [ $ans == r ] || [ $ans == R ]
+then
+	var1=`ls`
+	for i in $var1
+	do
+		# Generate a random number
+		# Choose a random name from the dictionary and match it to the the random number
+		# Cut out the random number and assign the new name to a variable
+nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
+mv -v $i $random 2>/dev/null
+done
+else
+	echo "enter the ABSOLUTE PATH for the file (e.g: /home/$USER/tmp/my_file.txt) "
+	read old_path
+	if [[ -f $old_path ]]
+	then
+	nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;new_path=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
+		mv -v "$old_path" "$new_path" 2>/dev/null
+	else 
+		echo "$old_path does not exist as a file on this system."
+	fi
+fi
+exit
+} 
 
 function Update() 
 { 
