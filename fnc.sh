@@ -131,6 +131,9 @@ if [[ $ans == y ]] || [[ $ans == yes ]]
 then 
 less  ~/filename-changer/file_extensions.txt 
 fi
+read -p "Exclude directories? " dir
+if [[ $dir == n ]] || [[ $dir == no ]]
+then
 echo -e "Input the new file extension \tDo not include '.'" 
 read ext
 var1=`ls`
@@ -138,6 +141,22 @@ for i in $var1
 do
 j=$(echo "$i" | cut -f 1 -d '.') 
 mv -v $i $j.$ext 2>/dev/null
+done
+exit 0
+elif [[ $dir == y ]] || [[ $dir == yes ]]
+then
+echo -e "Input the new file extension \tDo not include '.'" 
+read ext
+var1=`ls`
+for i in $var1
+do
+	if [ -d $i ]
+	then
+		:
+	else
+j=$(echo "$i" | cut -f 1 -d '.') 
+mv -v $i $j.$ext 2>/dev/null
+	fi
 done
 exit 0
 } 
