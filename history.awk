@@ -4,8 +4,8 @@ BEGIN {
 	FS=":"
 }
 {
-	print $1"\t"$2"    \t     " $3
+	print $1"\t"$2"    \t  " $3
 }
 END {
-	print "You have reached the end of this file."
+	print "fnc.sh: You have reached the end of this file."
 }
