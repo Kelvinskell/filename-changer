@@ -1,17 +1,21 @@
 #!/bin/bash -i
 # Filename Chnager (fnc) by Kelvin Onuchukwu 
 # Initial: Nov 2021; Last update: Dec 2021
-# N.B: This project is a work in progress. To contribute to this project, visit the Contributing.md file for basic guidelines. 
+# To contribute to this project, visit the Contributing.md file for basic guidelines. 
 
+# Redirect erros to null
+exec 2>/dev/null
+
+# Remove files before exiting program
 trap func exit
 function func()
 {
-	rm ~/tmp/error.log 2> /dev/null
-	rm ~/filename-changer/.random.txt 2>/dev/null
-        rm ~/tmp/temp.txt   2> /dev/null
-        rm ~/tmp/hist_temp.txt 2>/dev/null
+	rm ~/tmp/error.log 
+	rm ~/filename-changer/.random.txt 
+        rm ~/tmp/temp.txt   
+        rm ~/tmp/hist_temp.txt 
 	#Remove ~/tmp deirectory only if it is empty
-	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 2> /dev/null
+	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 
 }
 
 function Temp_dir () 
@@ -36,7 +40,7 @@ then
 	echo -e "fnc.sh: No option selected. \nTry fnc -h for more information"
 exit 0
 else
-        touch ~/filename-changer/.history_page.log 2>/dev/null
+        touch ~/filename-changer/.history_page.log 
 echo -e "Hi, welcome $USER. \tI hope you enjoy using this program."
 sleep 2
 echo -e "Create an alias fnc to run this script anywhere from the command line."
@@ -75,7 +79,7 @@ var1=`ls`
 for i in $var1
 do
 	j=`echo $i | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
-	mv -v $i $j 2> ~/tmp/error.log
+	mv -v $i $j 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 done
 exit 0
@@ -90,7 +94,7 @@ do
 		:
 	else
 	j=`echo $i | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
-	mv -v $i $j 2> ~/tmp/error.log
+	mv -v $i $j 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
@@ -111,7 +115,7 @@ if [ -s ~/filename-changer/.history_page.log ]; then
 echo -e "Press c to clear history \tPress d to view history" 
 read ans
 if [[ $ans == c ]] || [[ $ans == C ]]; then
-rm ~/filename-changer/.history_page.log 2>/dev/null
+rm ~/filename-changer/.history_page.log 
 touch ~/filename-changer/.history_page.log
 touch ~/filename-changer/.file_inodes.log
 echo "History cleared."
@@ -140,7 +144,7 @@ var1=`ls`
 for i in $var1
 do 
 	j=$(tr '[:lower:]' '[:upper:]' < <(echo "$i"))
-	mv -v $i $j 2> ~/tmp/error.log
+	mv -v $i $j 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 done
 exit
@@ -155,7 +159,7 @@ do
 		:
 	else
 		j=$(tr '[:lower:]' '[:upper:]' < <(echo "$i"))
-	mv -v $i $j 2> ~/tmp/error.log
+	mv -v $i $j 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
@@ -181,7 +185,7 @@ var1=`ls`
 for i in $var1
 do
 j=$(echo "$i" | cut -f 1 -d '.') 
-mv -v $i $j.$ext 2>/dev/null
+mv -v $i $j.$ext 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 done
 exit 0
@@ -197,7 +201,7 @@ do
 		:
 	else
 j=$(echo "$i" | cut -f 1 -d '.') 
-mv -v $i $j.$ext 2>/dev/null
+mv -v $i $j.$ext 
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
@@ -278,25 +282,28 @@ else
 	exit
 }
 
-#function Revert() 
-#{
-# echo "Enter the current filename" 
-# read filename
-# Check if filename exists in history
-# cut -d: -f 3 ~/filename-changer/.history_page.log > ~/tmp/hist_temp.txt
-# if [ tac ~/tmp/hist_temp1.txt | grep -q -w -m1 $filename ] 
-# then 
-# j=$filename 
-# tac ~/filename-changer/.history_page.txt | grep -m1 $filename > ~/tmp/hist_temp.txt
-# i=${cut -d: -f 2 ~/tmp/hist_temp.txt) 
-# mv -v $i $j 2>/dev/null
-# echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
-# else 
-# echo "Sorry, $filename does not exist in our record."
-# exit 
-# fi
-# exit
-#} 
+function Revert() 
+{
+ echo "Enter the current filename" 
+ read filename
+ # Check if filename exists in history
+ mkdir ~/tmp 
+ touch ~/tmp/hist_temp.txt 
+ cut -d: -f 3 ~/filename-changer/.history_page.log > ~/tmp/hist_temp.txt
+ if [ `tac ~/tmp/hist_temp.txt | grep -w -m1 $filename ~/tmp/hist_temp.txt` ] 
+ then 
+ j=$filename 
+ tac ~/filename-changer/.history_page.log | grep -m1 $filename > ~/tmp/hist_temp.txt
+ i=$(cut -d: -f 2 ~/tmp/hist_temp.txt) 
+ echo $i
+ mv -v $j $i
+ echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
+ else 
+ echo "Sorry, $filename does not exist in our record."
+ exit 
+ fi
+ exit
+} 
 
 function Random() 
 {
@@ -311,7 +318,7 @@ then
 		# Choose a random name from the dictionary and match it to the the random number
 		# Cut out the random number and assign the new name to a variable
 nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
-mv -v $i $random 2>/dev/null
+mv -v $i $random 
 echo "`date +%D`:$i:$random:" >> ~/filename-changer/.history_page.log
 done
 else
@@ -320,7 +327,7 @@ else
 	if [[ -f $old_path ]]
 	then
 	nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;new_path=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
-		mv -v "$old_path" "$new_path" 2>/dev/null
+		mv -v "$old_path" "$new_path" 
 echo "`date +%D`:$i:$new_path:" >> ~/filename-changer/.history_page.log
 	else 
 		echo "$old_path does not exist as a file on this system."
@@ -412,6 +419,10 @@ do
 			# Update to the latest version
 			Temp_dir
                         Update
+			;;
+		z | Z)
+			#Revert to last saved state
+			Revert
 			;;
 		*)
 		        # Wrong option selection
