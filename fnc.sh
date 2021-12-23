@@ -335,6 +335,16 @@ function Path()
 
 else 
 	echo -e "fnc.sh: $path does not exist as a directory on this system! "
+	echo -n 1 >> check.txt
+		grep -qw 111 check.txt
+		if [[ $? == 0 ]]
+		then
+			echo -e "You have made three incorrect entries. \nAbruptly quitting program"
+			exit
+		else
+			Path
+		fi
+
 	fi
 	exit
 }
