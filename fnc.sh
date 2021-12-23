@@ -243,45 +243,6 @@ fi
 exit
 }
 
-function Path()
-{
-	echo "Please enter the ABSOLUTE Directory path for the files(e.g /home/$USER/Videos):"
-	read path
-	if [ -d $path ]
-	then
-		cd $path
-		PS3="Choose how you wish to alter the filenames in this directory: "
-                echo "Press a number to select an option." 
-		select opt in extension glob uppercase lowercase quit
-		do
-			case $opt in
-				extension)
-					Extension
-					;;
-				first-letter)
-					First
-					;;
-				uppercase)
-					Uppercase
-					;;
-				lowercase)
-					Lowercase
-					;;
-				quit)
-					exit 0
-					;;
-				*)
-					echo -e "fnc.sh: Invalid option selected. \nTry fnc -h for more information \nfnc.sh: Exiting program..."
-					exit 1
-				esac
-			done
-
-else 
-	echo -e "fnc.sh: $path does not exist as a directory on this system! "
-	fi
-	exit
-}
-
 function Revert() 
 {
  echo "Enter the current filename" 
@@ -335,6 +296,48 @@ echo "`date +%D`:$i:$new_path:" >> ~/filename-changer/.history_page.log
 fi
 exit
 } 
+
+function Path()
+{
+	echo "Please enter the ABSOLUTE Directory path for the files(e.g /home/$USER/Videos):"
+	read path
+	if [ -d $path ]
+	then
+		cd $path
+
+		echo -e "Press 1 to add or modify file extensions \npress 2 to change first letter to uppercase \npress 3 to change filename to uppercase characters \nPress 4 to change filename to lowercase cahracters \nPress 5 to generate random anmes for files \nPress 6 to exit"
+		select opt in extension first-letter uppercase lowercase random quit
+		do
+			case $opt in
+				extension)
+					Extension
+					;;
+				first-letter)
+					First
+					;;
+				uppercase)
+					Uppercase
+					;;
+				lowercase)
+					Lowercase
+					;;
+				random)
+					Random
+					;;
+				quit)
+					exit 0
+					;;
+				*)
+					echo -e "fnc.sh: Invalid option selected. \nTry fnc -h for more information \nfnc.sh: Exiting program..."
+					exit 1
+				esac
+			done
+
+else 
+	echo -e "fnc.sh: $path does not exist as a directory on this system! "
+	fi
+	exit
+}
 
 function Update() 
 { 
