@@ -21,7 +21,7 @@ OPTIONS
 
 -E   Same as -e. 
 
--h   Display hekoy.
+-h   Display help.
 
 -H   Display or erase history.
 
