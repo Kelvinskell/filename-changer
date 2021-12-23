@@ -176,7 +176,7 @@ then
 less  ~/filename-changer/file_extensions.txt 
 fi
 echo "Exclude directories? "
-read  dir
+read -p "y/n " dir
 if [[ $dir == n ]] || [[ $dir == no ]]
 then
 echo -e "Input the new file extension \tDo not include '.'" 
@@ -186,7 +186,7 @@ for i in $var1
 do
 j=$(echo "$i" | cut -f 1 -d '.') 
 mv -v $i $j.$ext 
-echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
+echo "`date +%D`:$i:$j.$ext:" >> ~/filename-changer/.history_page.log
 done
 exit 0
 elif [[ $dir == y ]] || [[ $dir == yes ]]
@@ -202,7 +202,7 @@ do
 	else
 j=$(echo "$i" | cut -f 1 -d '.') 
 mv -v $i $j.$ext 
-echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
+echo "`date +%D`:$i:$j.$ext:" >> ~/filename-changer/.history_page.log
 	fi
 done
 fi
