@@ -14,6 +14,7 @@ function func()
 	rm ~/filename-changer/random.txt 
         rm ~/tmp/temp.txt   
         rm ~/tmp/hist_temp.txt 
+	rm ~/tmp/check.txt
 	#Remove ~/tmp deirectory only if it is empty
 	find ~/tmp -maxdepth 0 -empty -exec rmdir  ~/tmp {} \; 
 }
@@ -335,8 +336,9 @@ function Path()
 
 else 
 	echo -e "fnc.sh: $path does not exist as a directory on this system! "
-	echo -n 1 >> check.txt
-		grep -qw 111 check.txt
+	# Exit after three wrong inputs
+	echo -n 1 >> ~/tmp/check.txt
+		grep -qw 111 ~/tmp/check.txt
 		if [[ $? == 0 ]]
 		then
 			echo -e "You have made three incorrect entries. \nAbruptly quitting program"
