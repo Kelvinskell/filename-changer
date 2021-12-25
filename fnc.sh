@@ -355,7 +355,8 @@ function Update()
 { 
 echo "fnc.sh: Connecting to remote repository..."
 sleep 1
-             git pull ~/filename-changer
+cd ~/filename-changer
+             git pull --all
         if [[ $? == 0 ]] 
 		then
 			:
