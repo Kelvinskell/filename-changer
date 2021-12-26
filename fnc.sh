@@ -290,7 +290,7 @@ else
 	then
 	nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;new_path=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
 		mv -v "$old_path" "$new_path" 
-echo "`date +%D`:$i:$new_path:" >> ~/filename-changer/.history_page.log
+echo "`date +%D`:$old_path:$new_path:" >> ~/filename-changer/.history_page.log
 	else 
 		echo "$old_path does not exist as a file on this system."
 	fi
