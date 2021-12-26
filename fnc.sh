@@ -279,22 +279,36 @@ then
 		# Generate a random number
 		# Choose a random name from the dictionary and match it to the the random number
 		# Cut out the random number and assign the new name to a variable
-nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
+nl /usr/share/dict/american-english > ~/filename-changer/random.txt ;random=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d "0123456789'")
 mv -v $i $random 
-echo "`date +%D`:$i:$random:" >> ~/filename-changer/.history_page.log
+echo "`date +%D`:"$i":"$random":" >> ~/filename-changer/.history_page.log
 done
-else
-	echo "enter the ABSOLUTE PATH for the file (e.g: /home/$USER/tmp/my_file.txt) "
-	read old_path
-	if [[ -f $old_path ]]
+elif [ $ans == s ] || [ $ans == S ]
+then
+	echo -e "Enter the filename.  \tIf the file is not loacted in the current working directory, then specify the ABSOLUTE PATH for the file (e.g: /home/$USER/tmp/my_file.txt) "
+	read old_name
+	if [[ -f $old_name ]]
 	then
 	nl /usr/share/dict/american-english > ~/filename-changer/random.txt 
-	new_path=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d '0123456789')
-	mv -v "$old_path" "$new_path" 
-        echo "`date +%D`:$old_path:$new_path:" >> ~/filename-changer/.history_page.log
+	new_name=$(grep -w $RANDOM ~/filename-changer/random.txt|tr -d "0123456789'")
+	mv -v $old_name $new_name 
+	Date=$( date +%D )
+        echo "$Date:$old_name:$new_name:" >> ~/filename-changer/.history_page.log
 	else 
-		echo "$old_path does not exist as a file on this system."
+		echo "$old_name does not exist as a file on this system."
 	fi
+else
+	echo "Please select either r or s. "
+	# Exit after three wrong inputs
+	echo -n 1 >> ~/tmp/check.txt
+		grep -qw 111 ~/tmp/check.txt
+		if [[ $? == 0 ]]
+		then
+			echo -e "You have made three incorrect entries. \nAbruptly quitting program"
+			exit
+		else
+			Random
+		fi
 fi
 exit
 } 
