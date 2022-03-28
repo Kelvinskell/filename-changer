@@ -246,6 +246,7 @@ exit
 
 function Revert() 
 {
+ echo "Note: For this option to work properly, you need to be in the directory where the file exists."
  echo "Enter the current filename" 
  read filename
  # Check if filename exists in history
