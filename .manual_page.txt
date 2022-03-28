@@ -9,7 +9,8 @@ COPYRIGHT
      MIT License   
 
 DESCRIPTION
-The baic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
+A simple and easy-to-use file renaming tool.
+The basic function of this program is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
 Please visit the README file on the GitHub repository: https://github.com/Kelvinskell/filename-changer.git to get a full description.
 
 OPTIONS
@@ -42,7 +43,7 @@ OPTIONS
 -V   Update to the latest version. 
 
 -z   Revert current filename to previous name.
-
+This option works only if you are in the directory where the file exists.
 -Z   Same as -z.
 
 AUTHOR
