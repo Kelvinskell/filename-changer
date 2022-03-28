@@ -1,6 +1,6 @@
 #!/bin/bash -i
 # Filename Chnager (fnc) by Kelvin Onuchukwu 
-# Initial: Nov 2021; Last update: Dec 2021
+# Initial: Nov 2021; Last update: Mar 2022
 # To contribute to this project, visit the Contributing.md file for basic guidelines. 
 
 # Redirect erros to null
