@@ -2,9 +2,10 @@
 
 
 ## Project Name And Brief Synopsis 
-This script shall be called **Filename Changer**, or **fnc** for short. 
+This program shall be called **Filename Changer**, or **fnc** for short. 
+Fnc is basically a CLI based file renaming tool. 
 
-The basic function of this script is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
+The basic function of this program is to automate the renaming of files in order to give users more flexibility and efficiency when working with files on the command line interface. 
 This is essentially, a utility-packed bash script that makes it easier for users to quickly change filenames in a directory, or even across a file system, to lowercase characters, uppercase characters, and many more!
 You can even choose to hide your files in plain sight by generating random names for them!
 
