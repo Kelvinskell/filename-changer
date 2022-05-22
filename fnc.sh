@@ -247,8 +247,11 @@ exit
 function Revert() 
 {
  echo "Note: For this option to work properly, you need to be in the directory where the file exists."
- echo "Enter the current filename" 
- read filename
+ echo "If you wish to revert multiple filenames at once, enter the filenames and seperate each entry with a comma(,)."
+ IFS=","
+ echo "Enter the current filename(s): " 
+ read filenames
+ for filename in $filenames; do
  # Check if filename exists in history
  mkdir ~/tmp 
  touch ~/tmp/hist_temp.txt 
@@ -265,6 +268,7 @@ function Revert()
  echo "Sorry, $filename does not exist in our record."
  exit 
  fi
+done
  exit
 } 
 
