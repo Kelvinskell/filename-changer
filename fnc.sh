@@ -221,38 +221,33 @@ if [[ $ans == y ]] || [[ $ans == yes ]]
 then 
 less  ~/filename-changer/file_extensions.txt 
 fi
-echo "Exclude directories? "
-read -p "y/n " dir
-if [[ $dir == n ]] || [[ $dir == no ]]
-then
+echo -e "Input the old file extension \tDo not include'.'"
+read old_ext
 echo -e "Input the new file extension \tDo not include '.'" 
-read ext
+read new_ext
 var1=`ls`
+ls_array=()
 for i in $var1
 do
-j=$(echo "$i" | cut -f 1 -d '.') 
-mv -v $i $j.$ext 
-echo "`date +%D`:$i:$j.$ext:" >> ~/filename-changer/.history_page.log
+	ls_array+=($i)
 done
-exit 0
-elif [[ $dir == y ]] || [[ $dir == yes ]]
-then
-echo -e "Input the new file extension \tDo not include '.'" 
-read ext
-var1=`ls`
-for i in $var1
+# Capture for filenames ending with old_ext
+ext_array=()
+for name in ${ls_array[@]}
 do
-	if [ -d $i ]
+	if [[ $(echo $name | grep "$old_ext$") ]]
 	then
-		:
-	else
-j=$(echo "$i" | cut -f 1 -d '.') 
-mv -v $i $j.$ext 
-echo "`date +%D`:$i:$j.$ext:" >> ~/filename-changer/.history_page.log
+		ext_array+=($name)
 	fi
 done
-fi
-exit
+
+for i in ${ext_array[@]}
+do
+j=$(echo "$i" | cut -f 1 -d '.') 
+mv -v $i $j.$new_ext 
+echo "`date +%D`:$i:$j.$new_ext:" >> ~/filename-changer/.history_page.log
+done
+exit 0
 }
 
 function Lowercase()
