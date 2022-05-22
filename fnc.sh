@@ -54,6 +54,7 @@ shopt -s expand_aliases
 source "~/.bash_aliases"
 sleep 1
 echo -e "Alias fnc has been created for command 'bash ~/filename-changer'. \nYou can now execute this program by typing 'fnc' anywhere on your terminal. \nIf you move this directory at any point in time, please be sure to update your .bash_aliases and .bashrc files as appropriate."
+echo "To be certain that 'fnc' will work, execute 'source ~/bash_aloases'"
 elif [[ $ans == n ]] || [[ $ans == no ]] 
 then
 	echo -e "Please restart the script with an option. \nTry fnc -h for more information."
