@@ -215,10 +215,16 @@ function Lowercase()
 {
 echo "Exclude directories? "
 read  dir
+# Capture filenames into an array
+var1=`ls`
+ls_array=()
+for name in $var1
+do
+	ls_array+=($name)
+done
 if [[ $dir == n ]] || [[ $dir == no ]]
 then
 	# Execute action on both files and directories
-var1=`ls`
 for i in $var1
 do
 	j=$(tr '[:upper:]' '[:lower:]' < <(echo "$i"))
@@ -228,8 +234,11 @@ done
 exit
 elif [[ $dir == y ]] || [[ $dir == yes ]]
 then
-	# Execute action on only filenames
-var1=`ls`
+	echo -e "Press 0 to rename all filenames \tPress 1 to input selected files"
+	read input
+	if [ $input  == 0 ]
+	then
+	# Execute action on all filenames
 for i in $var1
 do
 	if [ -d $i ]
@@ -241,7 +250,34 @@ do
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
+elif [ $input == 1 ]; then
+	# Execute action on selected files
+	IFS=","
+	echo -e "Input filenames \tSeperate each entry with a comma(,):"
+	read filenames
+	# Create an empty array
+	file_array=()
+	for i in $filenames
+	do
+		# Populate array with selected input 
+		file_array+=($i)
+	done
+	for filename in ${ls_array[@]}
+	do
+		# Test if filename is a member of file_array
+		if [[ " ${file_array[@]} " =~ " ${filename} " ]]; then
+			if [ -d $filename ]; then
+				:
+			else
+		new_name=$(tr '[:upper:]' '[:lower:]' < <(echo "$filename"))
+	mv -v $filename $new_name
+echo "`date +%D`:$filename:$new_name:" >> ~/filename-changer/.history_page.log
+			fi
+		fi
+	done
+	fi
 fi
+
 exit
 }
 
