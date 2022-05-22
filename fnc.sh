@@ -2,9 +2,9 @@
 # Filename Chnager (fnc) by Kelvin Onuchukwu 
 # Initial: Nov 2021; Last update: Mar 2022
 # To contribute to this project, visit the Contributing.md file for basic guidelines. 
-
+set -x
 # Redirect erros to null
-exec 2>/dev/null
+#exec 2>/dev/null
 
 # Remove files before exiting program
 trap func exit
@@ -77,7 +77,10 @@ read  dir
 if [[ $dir == n ]] || [[ $dir == no ]]
 then
 	# Execute action on both files and directories
-var1=`ls`
+for name in $var1
+do
+	ls_array+=($name)
+done
 for i in $var1
 do
 	j=`echo $i | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
@@ -88,7 +91,10 @@ exit 0
 elif [[ $dir == y ]] || [[ $dir == yes ]]
 then
 	# Execute action on only filenames
-var1=`ls`
+	echo -e "Press 0 to rename all files \tPress 1 to select files "
+	read input
+	if [ $input == 0 ]
+	then
 for i in $var1
 do
 	if [ -d $i ]
@@ -100,6 +106,41 @@ do
 echo "`date +%D`:$i:$j:" >> ~/filename-changer/.history_page.log
 	fi
 done
+elif [ $input == 1 ]
+then
+# Capture filenames in var1 into an array
+var1=`ls`
+ls_array=()
+for i in $var1
+do
+	ls_array+=($i)
+done
+	echo -e "Input filenames \tSeperate each entry with a comma(,): "
+	IFS=","
+	read filenames
+	# Execute action on selected files
+	file_array=()  
+	echo step0
+	for i in $filenames
+	do 
+		# Populate array with selected input 
+		file_array+=($i) 
+	done
+	echo step1
+        for filename in ${ls_array[@]}
+	do 
+		# Test if filename is a member of file_array
+		if [[ " ${file_array[@]} " =~ " ${filename} " ]]; then
+			if [ -d $filename ]; then
+				:
+                        else
+	new_name=`echo $filename | awk '{$1=toupper(substr($1,0,1))substr($1,2)}1'` 
+	mv -v $filename $new_name
+echo "`date +%D`:$filename:$new_name:" >> ~/filename-changer/.history_page.log
+	fi
+		fi
+done
+fi
 fi
 exit
 } 
@@ -234,7 +275,7 @@ done
 exit
 elif [[ $dir == y ]] || [[ $dir == yes ]]
 then
-	echo -e "Press 0 to rename all filenames \tPress 1 to input selected files"
+	echo -e "Press 0 to rename all files \tPress 1 to input selected files"
 	read input
 	if [ $input  == 0 ]
 	then
