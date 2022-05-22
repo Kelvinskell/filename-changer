@@ -28,6 +28,11 @@ As always, feel free to [Email](kelvinskelll@gmail.com) me, or check me out on [
 - [x] Display version information
 - [x] Update to the latest version
 
+The `-p` or `-P` option is where the full power of fnc lies.
+This option gives you the ability to execute other functionalities of this script from anywhere in the command line. All you need to do is to specify the absolute or relative path to the files you want to operate on!
+
+For most other options you will need to be in the directory where the files are located.
+
 To get an exhaustive description of these features and how to use them, use the help option (`fnc -h`) to view the man page. Or view it directly in the _.manual_page.txt_ file. 
 
 ## Installation
