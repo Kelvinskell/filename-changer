@@ -2,9 +2,12 @@
 # Filename Chnager (fnc) by Kelvin Onuchukwu 
 # Initial: Nov 2021; Last update: Mar 2022
 # To contribute to this project, visit the Contributing.md file for basic guidelines. 
-set -x
+
+# Uncomment the line below to debug
+#set -x
+
 # Redirect erros to null
-#exec 2>/dev/null
+exec 2>/dev/null
 
 # Remove files before exiting program
 trap func exit
